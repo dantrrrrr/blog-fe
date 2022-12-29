@@ -1,0 +1,47 @@
+.login {
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/313251536_694843022003571_7766482947946918353_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_ohc=PG3stncf79UAX_NV9_c&_nc_ht=scontent.fsgn5-12.fna&oh=00_AfDtU8AcfrxDJuON39ozXqsEYdlQQbK1yYPJ1PbaOYzUEQ&oe=63B19F61');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.loginTitle{
+    font-size: 50px;
+}
+.loginForm{
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    width: 30vw;
+}
+.loginForm>label{
+    margin: 10px 0;
+}
+.loginInput{
+    background-color: #fff;
+    padding: 10px 20px;
+    border: none;
+}
+.loginButton{
+    cursor: pointer;
+    margin-top: 20px;
+    background-color:lightcoral;
+    border: none;
+    padding :10px;
+    color:#fff;
+    border-radius: 10px;
+}
+.registerBtn{
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: teal;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+
+}

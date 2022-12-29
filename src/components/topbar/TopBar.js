@@ -26,7 +26,7 @@ export default function TopBar() {
             <Link className='link' to='/write'>BLOG</Link>
           </li>
           <li className="topListItem">
-
+            hellosawd
           </li>
         </ul>
       </div>

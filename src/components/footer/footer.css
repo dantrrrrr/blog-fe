@@ -1,0 +1,36 @@
+.footer{
+    display: flex;
+    width: 100vw;
+    height: 45vh;
+    margin-top: 60px;
+    font-family:'Varela Round', serif;
+    background-color: rgba(181, 180, 180, 0.648);
+    padding: 20px;
+
+}
+.footerLeft{
+    flex: 3;
+    
+}
+.footerCenter{
+    flex: 6;
+    display: flex;
+    justify-content: space-evenly;
+}
+.footerCenterItem{
+    display: flex;
+    flex-direction: column;
+}
+.footerCenterItem>ul{
+    list-style-type: none;
+}
+.footerCenterItem li{
+    margin: 10px 0 ;
+}
+.footerCenterItemTitle{
+    font-size: 18px;
+    font-weight: 600;
+}
+.footerRight{
+    flex: 3;
+}

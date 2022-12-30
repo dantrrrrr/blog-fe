@@ -1,6 +1,16 @@
-.posts{
+.posts {
     flex: 9;
-    display: flex;
     flex-wrap: wrap;
     margin: 20px;
+    display: flex;
+}
+
+.postsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.postsTitle {
+    text-align: center;
+    margin: 30px 0 ;
 }

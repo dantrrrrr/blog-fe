@@ -1,29 +1,84 @@
+import { useContext, useState } from 'react';
 import Sidebar from '../../components/sidebar/Sidebar';
+import { Context } from '../../context/Context';
 import './settings.css';
+import axios from 'axios';
 
 const Settings = () => {
+    const [file, setFile] = useState(null);
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { user,dispatch } = useContext(Context);
+
+
+    console.log(user)
+    const handleSubmit = async (e) => {
+        // setContent(editorRef.current.getContent())
+        e.preventDefault();
+        const updatedUser = {
+            username,
+            email,
+            password
+
+
+        };
+        if (file) {
+
+            const data = new FormData();
+            const filename = Date.now().toString() + file.name;
+            data.append('name', filename);
+            data.append('file', file);
+            updatedUser.profilePicture = filename;
+            try {
+                await axios.post('https://blog-api-dantr.vercel.app/api/upload', data);
+
+            } catch (error) {
+                console.log(error.response)
+            }
+        }
+        try {
+            const res = await axios.put(`https://blog-api-dantr.vercel.app/api/user/${user._id}`,
+                updatedUser
+            )
+            dispatch({type:"LOGOUT"});
+                // localStorage.setItem('user',JSON.stringify(user))
+           
+            window.location.replace('/settings/');
+        } catch (error) {
+            console.log(error.response.data)
+
+        }
+
+    }
     return (
         <div className='settings'>
             <div className="settingWrapper">
                 <div className="settingsTitle">
-                    <div className="settingsUpdateTitle">Update </div>
-                    <div className="settingsDeleteTitle">Delete </div>
+                    {/* <div className="settingsUpdateTitle">Update </div>
+                    <div className="settingsDeleteTitle">Delete </div> */}
                 </div>
-                <form action="" className="settingsForm">
+                <form action="" className="settingsForm" onSubmit={handleSubmit}>
                     <label htmlFor="">Profile picture</label>
                     <div className="settingsPP">
-                        <img className='' src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/320705530_536345018377652_5549898253692000245_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=7ecAiogXHmsAX_y5Eo4&_nc_ht=scontent.fsgn5-15.fna&oh=00_AfCAbePvzTeb4QX7sXMkU659p2w2GRfabiN_vMsPQb9S7Q&oe=63B21A26" alt="" />
+                        <img className='' src={user.profilePicture} alt="" />
                         <label htmlFor="fileInput">
                             <i className="settingsPPIcon fa-solid fa-circle-user"></i>
                         </label>
-                        <input type="file" name="" id="fileInput" style={{display:"none"}} />
+                        <input
+                            type="file"
+                            name=""
+                            id="fileInput"
+                            style={{ display: "none" }}
+                            onChange= {(e)=>setFile(e.targer.files[0])}
+                        />
                     </div>
                     <label htmlFor="">Username :</label>
-                    <input type="text" placeholder='dantr' />
+                    <input type="text" placeholder={user.username} onChange={e=>setUsername(e.target.value)} />
                     <label htmlFor="">Email :</label>
-                    <input type="email" placeholder='dantr@gmail.com' />
+                    <input type="email" placeholder={user.email}  onChange={e=>setEmail(e.target.value)} />
                     <label htmlFor="">Password :</label>
-                    <input type="password" />
+                    <input type="password" placeholder='password'  onChange={e=>setPassword(e.target.value)}/>
                     <button className='settingsUpdate'>Update</button>
                 </form>
             </div>

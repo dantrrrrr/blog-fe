@@ -4,9 +4,9 @@ import { useContext } from 'react'
 import { Context } from '../../context/Context'
 
 const TopBar = () => {
-    const { user,dispatch } = useContext(Context);
-    const handleLogout =()=>{
-        dispatch({type:"LOGOUT"});
+    const { user, dispatch } = useContext(Context);
+    const handleLogout = () => {
+        dispatch({ type: "LOGOUT" });
     }
     return (
         <div className='topbar'>
@@ -21,7 +21,10 @@ const TopBar = () => {
                     <li className="topListItem"><Link className='link' to='/'>home</Link></li>
                     <li className="topListItem"><Link className='link' to='#'>news</Link></li>
                     <li className="topListItem"><Link className='link' to='#'>crypto</Link></li>
-                    <li className="topListItem"><Link className='link' to='/write'>New post</Link></li>
+                    {
+                        user?.isAdmin &&
+                        <li className="topListItem"><Link className='link' to='/write'>New post</Link></li>
+                    }
                     <li className="topListItem">About</li>
                 </ul>
             </div>

@@ -29,7 +29,7 @@ function App() {
             <Route path="/:category/" exact element={<Category />} />
             <Route path="/register" element={user ? <Navigate to='/' /> : <Register />} />
             <Route path="/login" element={user ? <Navigate to='/' /> : <Login />} />
-            <Route path="/write" element={user ? <Write /> : <Navigate to='/register' />} />
+            <Route path="/write" element={user?.isAdmin ? <Write /> : <Navigate to='/login' />} />
             <Route path="/settings" element={user ? <Settings /> : <Navigate to='/register' />} />
             <Route path="/post/:postSlug" element={<Single />} />
 

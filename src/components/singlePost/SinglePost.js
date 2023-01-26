@@ -1,29 +1,67 @@
 import './singlePost.css'
-export default function SinglePost() {
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios'
+import parse from 'html-react-parser';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from '../../context/Context';
+
+
+export default function SinglePost({ postSlug }) {
+    const [post, setPost] = useState({});
+    const [title, setTitle] = useState("")
+    const [desc, setDesc] = useState("")
+    const [content, setContent] = useState("")
+    const [updateMode, setUpdateMode] = useState(false);
+
+
+    console.log(post)
+    useEffect(() => {
+        const fetchPost = async () => {
+            const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts/${postSlug}`)
+            setPost(res.data)
+        }
+        fetchPost()
+    }, [postSlug])
+    const { user } = useContext(Context)
+    console.log(user)
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`https://blog-api-dantr.vercel.app/api/posts/${post._id}`, {
+                data: { username: user.username }
+            })
+            window.location.replace('/');
+
+        } catch (error) {
+
+        }
+    }
     return (
         <div className='singlePost'>
             <div className="singlePostWrapper">
-                <img src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/312599781_694842952003578_6876431946088715273_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=Ei6-mcsC43MAX_sUfW1&_nc_ht=scontent.fsgn5-11.fna&oh=00_AfBzw2EimUMCU0j38ySXhboJvWovKzwqyJ8k5cD46dca7g&oe=63AEF8AD" alt="" className="singlePostImg" />
-                <h1 className="singlePostTitle">Big Fan Mu with big Mu
-                    <div className="singlePostEdit">
-                        <i class="singlePostIcon fa-solid fa-pen-to-square"></i>
-                        <i class="singlePostIcon fa-solid fa-trash"></i>
-                    </div>
+                {post.photo && <img src={post.photo} alt="" className="singlePostImg" />}
+                {
+                    updateMode  ? <input type="text" value={post.title} /> :(
+
+                        
+                        <h1 className="singlePostTitle">{post.title}
+                    {user?.username === post.username &&
+                        <div className="singlePostEdit">
+                            <i className="singlePostIcon fa-solid fa-pen-to-square" onclick={() => setUpdateMode(true)}></i>
+                            <i className="singlePostIcon fa-solid fa-trash" onClick={handleDelete}></i>
+                        </div>
+                    }
                 </h1>
+                            )
+                        }
                 <div className="singlePostInfo">
-                    <span className='singlePostAuthor'>Author : <b>dantr</b></span>
-                    <span className='singlePostDate'>1 hour ago</span>
+                    <span className='singlePostAuthor'>Author :<Link className='link' to={`/?user=${post.username}`}><b>{post.username}</b></Link> </span>
+                    <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
 
                 </div>
-                <p className='singlePostDesc'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, rerum molestiae, aut consectetur laudantium quod aliquid iste incidunt ad deserunt neque blanditiis quaerat in voluptatibus veritatis. Ipsam soluta porro voluptatibus.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, rerum molestiae, aut consectetur laudantium quod aliquid iste incidunt ad deserunt neque blanditiis quaerat in voluptatibus veritatis. Ipsam soluta porro voluptatibus.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, rerum molestiae, aut consectetur laudantium quod aliquid iste incidunt ad deserunt neque blanditiis quaerat in voluptatibus veritatis. Ipsam soluta porro voluptatibus.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, rerum molestiae, aut consectetur laudantium quod aliquid iste incidunt ad deserunt neque blanditiis quaerat in voluptatibus veritatis. Ipsam soluta porro voluptatibus.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, rerum molestiae, aut consectetur laudantium quod aliquid iste incidunt ad deserunt neque blanditiis quaerat in voluptatibus veritatis. Ipsam soluta porro voluptatibus.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, rerum molestiae, aut consectetur laudantium quod aliquid iste incidunt ad deserunt neque blanditiis quaerat in voluptatibus veritatis. Ipsam soluta porro voluptatibus.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, rerum molestiae, aut consectetur laudantium quod aliquid iste incidunt ad deserunt neque blanditiis quaerat in voluptatibus veritatis. Ipsam soluta porro voluptatibus.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, rerum molestiae, aut consectetur laudantium quod aliquid iste incidunt ad deserunt neque blanditiis quaerat in voluptatibus veritatis. Ipsam soluta porro voluptatibus.
+                <p className='singlePostContent'>
+                    {parse(`${post.content}`)}
                 </p>
 
             </div>

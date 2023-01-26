@@ -1,36 +1,16 @@
 .footer{
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
-    height: 45vh;
-    margin-top: 60px;
+    height: 10vh;
+    padding: 10px ;
     font-family:'Varela Round', serif;
-    background-color: rgba(181, 180, 180, 0.648);
-    padding: 20px;
-
-}
-.footerLeft{
-    flex: 3;
+    background-color:var(--background);
+    color: var(--primary);
+    font-size: 20px;
+    border-top: 1px solid var(--primary);
+    font-family: 'Varela Round', sans-serif;
     
-}
-.footerCenter{
-    flex: 6;
-    display: flex;
-    justify-content: space-evenly;
-}
-.footerCenterItem{
-    display: flex;
-    flex-direction: column;
-}
-.footerCenterItem>ul{
-    list-style-type: none;
-}
-.footerCenterItem li{
-    margin: 10px 0 ;
-}
-.footerCenterItemTitle{
-    font-size: 18px;
-    font-weight: 600;
-}
-.footerRight{
-    flex: 3;
+
 }

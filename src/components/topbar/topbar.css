@@ -1,42 +1,83 @@
-.topbar{
-    width:calc(100% - 18vw);
+.topbar {
+    width: 100%;
     box-sizing: border-box;
-    position: relative;
+    position: fixed;
     top: 0;
     right: 0;
-    background: #07070e;
+    background: var(--background);
     color: #fff;
-    padding: 20px 30px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-.topLeft{
-
-}
-.searchInput{
-    background-color: inherit;
+    padding: 5px 20px;
     font-size: 16px;
     font-weight: 500;
-    border: none;
-    padding: 5px 10px;
+    font-family: 'Varela Round', sans-serif;
+
+    z-index: 10;
 
 }
-.searchInput:focus{
-    outline: none;
+
+.topLeft {
+    flex: 3;
 }
-.topRight{
+
+.topBrand {
+    font-family: "Varela Round", sans-serif;
+}
+
+.topLogo {
+    height: 50px;
+    cursor: pointer;
+
+}
+
+.topCenter {
+    flex: 6;
+    text-transform: capitalize;
+
+}
+
+.topList {
     display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+}
+
+.topListItem {
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+.topListItem:hover {
+    color: var(--secondary);
+
+}
+
+.topRight {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-}
-.topSearchIcon{
-
+    justify-content: space-evenly;
+    flex: 3;
 }
 
-.topButton{
-
+.profilePicture {
+    width: 40px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    object-fit: cover;
 }
-.topLanguage{
 
+.topRight span:hover {
+    color: var(--secondary);
+}
+
+.topSearchIcon {
+    cursor: pointer;
+}
+
+.topLanguage>span {
+    margin-left: 10px;
+    cursor: pointer;
 }

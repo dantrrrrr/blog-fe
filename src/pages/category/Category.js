@@ -1,13 +1,16 @@
 import React from 'react';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
-import './crypto.css'
+import './category.css'
+import {useParams} from 'react-router-dom'
 
-const Crypto = () => {
+const Category = () => {
+    // const {category}=useParams();
+    // console.log(category)
     return (
         <div className='crypto'>
             <div className="wrapper">
-                <Posts />
+                <Posts  />
                 <Sidebar />
             </div>
 
@@ -15,4 +18,4 @@ const Crypto = () => {
     );
 }
 
-export default Crypto;
+export default Category;

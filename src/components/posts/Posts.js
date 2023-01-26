@@ -1,16 +1,18 @@
 import './posts.css'
 import Post from '../post/Post'
-export default function Posts() {
+export default function Posts({posts}) {
     return (
         <div className="posts">
-            {/* <h1 className="postsTitle">SPORT GIRL</h1> */}
-          
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+            <h1 className="postsTitle">{}</h1>
+            <div className="postsWrapper">
+                {
+                    posts.map(post=>(
+
+                        <Post post={post} />
+                    ))
+                }
+             
+            </div>
 
             
         </div>

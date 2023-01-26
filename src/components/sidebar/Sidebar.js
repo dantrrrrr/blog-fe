@@ -1,10 +1,23 @@
 import "./sidebar.css"
-import {Link} from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import axios from 'axios';
 export default function Sidebar() {
+
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const res = await axios.get('https://blog-api-dantr.vercel.app/api/categories');
+            setCategories(res.data);
+
+        }
+        fetchCategories();
+
+    }, [])
+    console.log(categories)
     return (
         <div className="sidebar">
-             <div className="sidebarItem">
+            <div className="sidebarItem">
                 {/* <span className="sidebarTitle">Follow us</span> */}
                 <div className="sidebarSocial">
                     <i className="sidebarIcon fa-brands fa-square-facebook"></i>
@@ -22,15 +35,29 @@ export default function Sidebar() {
             <div className="sidebarItem">
                 <span className="sidebarTitle">Categories</span>
                 <ul className="sidebarList">
-                    <li className="sidebarListItem"><Link className='link' to='?cat=sport'>Sport</Link></li>
-                    <li className="sidebarListItem"><Link className='link' to='?cat=Woman'>Woman</Link></li>
-                    <li className="sidebarListItem"><Link className='link' to='?cat=girl'>Girl</Link></li>
-                    <li className="sidebarListItem"><Link className='link' to='?cat=bitch'>bitch</Link></li>
-                    <li className="sidebarListItem"><Link className='link' to='?cat=mu'>mu</Link></li>
-                    <li className="sidebarListItem"><Link className='link' to='?cat=pussy'>pussy</Link></li>
+                    {
+                        categories.map((cat) => (
+                            <li className="sidebarListItem"><Link className='link' to={`/?cat=${cat.name}`}>{cat.name}</Link></li>
+
+                        ))
+                    }
+
                 </ul>
             </div>
-           
+            <div className="sidebarItem">
+                <span className="sidebarTitle">Categories</span>
+                <ul className="sidebarList">
+                    {
+                        categories.map((cat) => (
+                            <li className="sidebarListItem"><Link className='link' to={`/?cat=${cat.name}`}>{cat.name}</Link></li>
+
+                        ))
+                    }
+
+                </ul>
+            </div>
+
+
         </div>
     )
 }

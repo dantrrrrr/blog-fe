@@ -4,34 +4,38 @@ import Single from './pages/single/Single'
 import Write from './pages/write/Write'
 import Settings from './pages/settings/Settings'
 import Login from './pages/login/Login'
-import Crypto from './pages/crypto/Crypto'
+import Category from './pages/category/Category'
 import Register from './pages/register/Register'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Footer from "./components/footer/Footer";
 import TopBar from "./components/topbar/TopBar";
 import styled from 'styled-components'
+import { useContext } from "react";
+import { Context } from "./context/Context";
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 20% 80%;
+ 
 `
 function App() {
-  const user = false;
+  const {user} = useContext(Context);
   return (
     <Container>
       <Router>
-        <SideBarLeft />
+        {/* <SideBarLeft /> */}
+        
+          <TopBar />
 
-        <Home />
-        {/* <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/crypto" exact element={<Crypto />} />
-          <Route path="/register" element={user? <Navigate to='/'/> :<Register />} />
-          <Route path="/login" element={user? <Navigate to='/'/>  :<Login />} />
-          <Route path="/write" element={user? <Write/> :<Navigate to='/register'/> } />
-          <Route path="/settings" element={user? <Settings /> :<Navigate to='/register'/> } />
-          <Route path="/post/:postId" element={<Single />} />
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/:category/" exact element={<Category />} />
+            <Route path="/register" element={user ? <Navigate to='/' /> : <Register />} />
+            <Route path="/login" element={user ? <Navigate to='/' /> : <Login />} />
+            <Route path="/write" element={user ? <Write /> : <Navigate to='/register' />} />
+            <Route path="/settings" element={user ? <Settings /> : <Navigate to='/register' />} />
+            <Route path="/post/:postSlug" element={<Single />} />
 
-        </Routes> */}
+          </Routes>
+          <Footer/>
+
         {/* <Footer/> */}
 
       </Router>

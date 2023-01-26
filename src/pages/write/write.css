@@ -1,5 +1,5 @@
 .write{
-    padding-top: 50px;
+    padding:100px 50px;
 }
 .writeImg{
     margin-left: 150px;
@@ -13,9 +13,14 @@
 
 }
 .writeFromGroup{
-    margin-left: 150px;
+    /* margin-left: 1px; */
     display: flex;
     align-items: center;
+   
+}
+.tox-tinymce{
+    width: 100%;
+    margin-top: 50px;
 }
 .writeIcon{
     width: 25px;
@@ -53,7 +58,7 @@
 .writeSubmit{
     position: absolute;
     top:50px;
-    right: 170px;
+    right: 10px;
     padding: 10px 15px;
     background-color: teal;
     border:none;

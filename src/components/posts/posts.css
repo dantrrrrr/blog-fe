@@ -1,13 +1,14 @@
 .posts {
+    background-color: var(--background);
+    color: var(--primary);
+    width: 80vw;
+}
+
+.postsWrapper {
     flex: 9;
     flex-wrap: wrap;
     margin: 20px;
     display: flex;
-}
-
-.postsWrapper {
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .postsTitle {

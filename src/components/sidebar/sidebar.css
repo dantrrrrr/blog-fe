@@ -37,3 +37,29 @@
     width: 50%;
     margin: 10px 0 ;
 }
+.randomPostList{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.randomPostItem{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.randomPostImg{
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    
+}
+.randomPostTitle{
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 30px;
+}

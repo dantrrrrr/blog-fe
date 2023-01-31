@@ -19,8 +19,8 @@ const TopBar = () => {
             <div className="topCenter">
                 <ul className="topList">
                     <li className="topListItem"><Link className='link' to='/'>home</Link></li>
-                    <li className="topListItem"><Link className='link' to='#'>news</Link></li>
-                    <li className="topListItem"><Link className='link' to='#'>crypto</Link></li>
+                    <li className="topListItem"><Link className='link' to='/news'>news</Link></li>
+                    <li className="topListItem"><Link className='link' to='/crypto'>crypto</Link></li>
                     {
                         user?.isAdmin &&
                         <li className="topListItem"><Link className='link' to='/write'>New post</Link></li>

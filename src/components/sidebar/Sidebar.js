@@ -5,16 +5,19 @@ import axios from 'axios';
 export default function Sidebar() {
 
     const [categories, setCategories] = useState([]);
+    const [randomPost, setRandomPost] = useState([]);
     useEffect(() => {
         const fetchCategories = async () => {
             const res = await axios.get('https://blog-api-dantr.vercel.app/api/categories');
+            const resRandom = await axios.get('https://blog-api-dantr.vercel.app/api/posts/random');
             setCategories(res.data);
+            setRandomPost(resRandom.data);
 
         }
         fetchCategories();
 
     }, [])
-    console.log(categories)
+    console.log(randomPost)
     return (
         <div className="sidebar">
             <div className="sidebarItem">
@@ -37,7 +40,7 @@ export default function Sidebar() {
                 <ul className="sidebarList">
                     {
                         categories.map((cat) => (
-                            <li className="sidebarListItem"><Link className='link' to={`/?cat=${cat.name}`}>{cat.name}</Link></li>
+                            <li className="sidebarListItem"><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
 
                         ))
                     }
@@ -45,11 +48,16 @@ export default function Sidebar() {
                 </ul>
             </div>
             <div className="sidebarItem">
-                <span className="sidebarTitle">Categories</span>
-                <ul className="sidebarList">
+                <span className="sidebarTitle">Đề xuất</span>
+                <ul className=" randomPostList">
                     {
-                        categories.map((cat) => (
-                            <li className="sidebarListItem"><Link className='link' to={`/?cat=${cat.name}`}>{cat.name}</Link></li>
+                        randomPost.map((post) => (
+                            <Link className='link' to={`/post/${post.slug}`}>
+                                <li className="randomPostItem">
+                                    <img src={post.photo} className="randomPostImg" alt="" />
+                                    <span className="randomPostTitle">{post.title}</span>
+                                </li>
+                            </Link>
 
                         ))
                     }

@@ -4,6 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Context } from '../../context/Context';
+
 function Write() {
     const editorRef = useRef(null);
     const [title, setTitle] = useState();
@@ -57,9 +58,8 @@ function Write() {
         }
 
     }
-    const handleTest = () => {
-        console.log('fine')
-    }
+   console.log(file)
+    
     return (
         <div className='write'>{
             file &&

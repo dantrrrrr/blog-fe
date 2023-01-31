@@ -49,7 +49,7 @@ function Write() {
                 "content": content,
                 "photo":"https://blog-api-dantr.vercel.app/images/"+newPost.photo,
                 "username": user.username,
-                "categories": ["news", "crypto", "insight"]
+                "categories": ["news"]
             })
             window.location.replace('/post/' + res.data.slug);
         } catch (error) {

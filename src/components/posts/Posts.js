@@ -6,8 +6,8 @@ export default function Posts({ posts }) {
         <div className="posts">
             {posts.length === 0 ? (
                 <>
-                <h1 className='notfound'>There no post found <span><Link  to='/'>go back</Link></span></h1>
-                
+                    <h1 className='notfound'>There no post found <span><Link to='/'>go back</Link></span></h1>
+
                 </>
             ) : (
                 <>

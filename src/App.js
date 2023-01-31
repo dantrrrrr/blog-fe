@@ -31,8 +31,8 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
 
-          <Route path="/:cat" exact element={<Home />} />
-          <Route path="/crypto" exact element={<Home category='crypto' />} />
+          <Route path="/:cat"  element={<Home />} />
+        
           {/* <Route path="/:category/" exact element={<Category />} /> */}
           <Route path="/register" element={user ? <Navigate to='/' /> : <Register />} />
           <Route path="/login" element={user ? <Navigate to='/' /> : <Login />} />

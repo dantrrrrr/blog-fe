@@ -1,34 +1,34 @@
-.settings {
+.settings{
     display: flex;
     margin-top: 50px;
 
 }
 
-.settingWrapper {
+.settingWrapper{
     flex: 9;
     padding: 20px 50px;
 }
 
-.settingsTitle {
+.settingsTitle{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.settingsUpdateTitle {
+.settingsUpdateTitle{
     font-size: 30px;
     margin-bottom: 10px;
     color: lightcoral;
 }
 
-.settingsDeleteTitle {
+.settingsDeleteTitle{
     color:red;
     font-size: 16px;
     cursor: pointer;
 
 }
 
-.settingsForm {
+.settingsForm{
     display: flex;
     flex-direction: column;
 

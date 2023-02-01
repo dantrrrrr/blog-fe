@@ -79,7 +79,7 @@ export default function SinglePost({ postSlug }) {
                         )
                 }
                 <div className="singlePostInfo">
-                    <span className='singlePostAuthor'>Author :<Link className='link' to={`/?user=${post.username}`}><b>{post.username}</b></Link> </span>
+                    <span className='singlePostAuthor'>Author: <Link className='link' to={`/?user=${post.username}`}><b>{post.username}</b></Link> </span>
                     <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
 
                 </div>

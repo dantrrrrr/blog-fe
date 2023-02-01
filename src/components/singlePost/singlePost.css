@@ -3,6 +3,7 @@
     padding: 20px;
     background-color: var(--background);
     color: var(--primary);
+    min-height: 100vh;
 
 }
 
@@ -69,7 +70,9 @@
     color: #b39656;
 }
 
-.singlePostAuthor {}
+.singlePostAuthor {
+
+}
 
 .singlePostDate {}
 
@@ -112,4 +115,17 @@
     cursor: pointer;
     align-self: flex-end;
     margin-top: 20px;
+}
+@media screen and (max-width: 440px) {
+    .singlePost{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .singlePostWrapper{
+        padding: 10px;
+    }
+    .singlePostContent img{
+        margin: 20px;
+    }
+
 }

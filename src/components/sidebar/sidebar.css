@@ -63,3 +63,38 @@
     text-align: center;
     padding: 10px 30px;
 }
+@media screen and (max-width: 440px) {
+    .sidebar{
+        width: 100vw;
+        height: max-content;
+        padding: 20px;
+        
+
+    }
+    .sidebarItem{
+        margin: 10px 30px;
+    }
+    .randomPostList{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .randomPostItem{
+        width: 40vw;
+        margin: 10px 0;
+        height: 150px;
+
+        box-sizing: border-box;
+    }
+    .randomPostImg{
+        width: 100%;
+        height: 90%;
+        object-fit: cover;
+    }
+    .randomPostTitle{
+        text-overflow: clip;
+        font-size:12px ;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+}

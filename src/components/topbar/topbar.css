@@ -1,4 +1,4 @@
-.topbar{
+.topbar {
     width: 100%;
     box-sizing: border-box;
     position: fixed;
@@ -80,4 +80,47 @@
 .topLanguage>span {
     margin-left: 10px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 440px) {
+    .topbar {
+        
+    }
+
+    .topCenter {
+       order: 3;
+       position: relative;
+        z-index: 9999;
+        display: none;
+
+    }
+
+    .topList {
+        /* position: absolute; */
+        
+        flex-direction: column;
+        z-index: 9999;
+        
+    }
+
+    .topListItem {
+        width: 100%;
+        height: 100px;
+
+    }
+
+    .topRight {
+        justify-content: end;
+    }
+
+    .profilePicture {
+        margin: 0 10px;
+    }
+
+    .topRight .topLanguage {
+        display: none;
+    }
+    .topRightBtn{
+        margin: 0 10px;
+    }
 }

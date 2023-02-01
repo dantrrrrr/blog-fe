@@ -1,7 +1,9 @@
 import './posts.css'
 import Post from '../post/Post'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 export default function Posts({ posts }) {
+    const {cat}=useParams();
+    
     return (
         <div className="posts">
             {posts.length === 0 ? (
@@ -11,7 +13,7 @@ export default function Posts({ posts }) {
                 </>
             ) : (
                 <>
-                    <h1 className="postsTitle">{ }</h1>
+                    <h1 className="postsTitle">{cat }</h1>
                     <div className="postsWrapper">
                         {
                             posts.map(post => (

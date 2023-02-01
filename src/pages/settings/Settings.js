@@ -5,12 +5,12 @@ import './settings.css';
 import axios from 'axios';
 
 const Settings = () => {
-    const [file, setFile] = useState(null);
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const { user,dispatch } = useContext(Context);
-
+    const [file, setFile] = useState(null);
+    const [username, setUsername] = useState(user.username);
+    const [email, setEmail] = useState(user.email);
+    const [password, setPassword] = useState(user.password);
+    console.log(username,email,password);
 
     console.log(user)
     const handleSubmit = async (e) => {
@@ -23,22 +23,22 @@ const Settings = () => {
 
 
         };
-        if (file) {
+        // if (file) {
 
-            const data = new FormData();
-            const filename = Date.now().toString() + file.name;
-            data.append('name', filename);
-            data.append('file', file);
-            updatedUser.profilePicture = filename;
-            try {
-                await axios.post('https://blog-api-dantr.vercel.app/api/upload', data);
+        //     const data = new FormData();
+        //     const filename = Date.now().toString() + file.name;
+        //     data.append('name', filename);
+        //     data.append('file', file);
+        //     updatedUser.profilePicture = filename;
+        //     try {
+        //         await axios.post('https://blog-api-dantr.vercel.app/api/upload', data);
 
-            } catch (error) {
-                console.log(error.response)
-            }
-        }
+        //     } catch (error) {
+        //         console.log(error.response)
+        //     }
+        // }
         try {
-            const res = await axios.put(`https://blog-api-dantr.vercel.app/api/user/${user._id}`,
+            await axios.put(`https://blog-api-dantr.vercel.app/api/user/${user._id}`,
                 updatedUser
             )
             dispatch({type:"LOGOUT"});

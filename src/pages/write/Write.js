@@ -7,17 +7,21 @@ import { Context } from '../../context/Context';
 
 function Write() {
     const editorRef = useRef(null);
-    const [title, setTitle] = useState();
-    const [desc, setDesc] = useState();
+    const [title, setTitle] = useState("");
+    const [desc, setDesc] = useState("");
     const [file, setFile] = useState();
-    const [content, setContent] = useState();
+    const [fileURL, setFileURL] = useState();
+    const [content, setContent] = useState("");
+    const [categories, setCategories] = useState("");
 
     const { user } = useContext(Context);
 
     const log = () => {
         setContent(editorRef.current.getContent())
     };
-    console.log({ title, file, content })
+    // console.log({ title, file, content })
+    // console.log(categories)
+    console.log(fileURL)
 
     const handleSubmit = async (e) => {
         setContent(editorRef.current.getContent())
@@ -47,9 +51,9 @@ function Write() {
                 "title": title,
                 "desc": desc,
                 "content": content,
-                "photo":"https://blog-api-dantr.vercel.app/images/"+newPost.photo,
+                "photo": `${!file ? fileURL :"https://blog-api-dantr.vercel.app/images/" + newPost.photo}`,
                 "username": user.username,
-                "categories": ["news"]
+                "categories": categories.split(',')
             })
             window.location.replace('/post/' + res.data.slug);
         } catch (error) {
@@ -58,13 +62,21 @@ function Write() {
         }
 
     }
-   console.log(file)
-    
+    // console.log(file)
+
     return (
-        <div className='write'>{
-            file &&
-            <img src={URL.createObjectURL(file)|| undefined} alt="" className="writeImg" />
-        }
+        <div className='write'>
+            <div className="writeImgWrapper">
+
+                {
+                    file && !fileURL &&
+                    <img src={URL.createObjectURL(file) || undefined} alt="" className="writeImg" />
+                }
+                {
+                    fileURL && !file &&
+                    <img src={fileURL} alt="" className="writeImg" />
+                }
+            </div>
             <form className="writeForm" onSubmit={handleSubmit}>
 
                 <div className="writeformGroup">
@@ -72,14 +84,26 @@ function Write() {
                         <i className=" writeIcon fa-solid fa-plus"></i>
                     </label>
                     <input type="file" id="fileInput" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
-                    <input type="text" id="title" className='writeInput' placeholder='Title ....' autoFocus={true} onChange={(e) => setTitle(e.target.value)} />
-                    <input type="text" id="title" className='writeInput' placeholder='desc ....' autoFocus={true} onChange={(e) => setDesc(e.target.value)} />
+                    <label htmlFor="fileURL" >or paste Image URL here :</label>
+                    <input type="text" id="fileURL" className='fileURL' onChange={e => setFileURL(e.target.value)} />
+                    <label htmlFor="title">
+                        Title :
+                    </label>
+                    <input type="text" id="title" className='writeInput' placeholder='....' autoFocus={true} onChange={(e) => setTitle(e.target.value)} />
+                    <label htmlFor="desc">
+                        Description
+                    </label>
+                    <input type="text" id="desc" className='writeInput' placeholder='Desc ....' autoFocus={true} onChange={(e) => setDesc(e.target.value)} />
+                    <label htmlFor="categories">
+                        Category : (split by ' , ')
+                    </label>
+                    <input type="text" id="categories" className='writeInput' placeholder='Category ....' autoFocus={true} onChange={(e) => setCategories(e.target.value)} />
 
                 </div>
-                <div className="writeFromGroup">
+                <div className="writeFormGroup">
                     {/* <textarea placeholder='Whats news' className='writeInput writeText' type='text' ></textarea> */}
                     <Editor
-                    
+
                         id='content'
                         onInit={(evt, editor) => editorRef.current = editor}
                         initialValue=""

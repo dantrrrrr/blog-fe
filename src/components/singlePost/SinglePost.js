@@ -39,7 +39,7 @@ export default function SinglePost({ postSlug }) {
             await axios.delete(`https://blog-api-dantr.vercel.app/api/posts/${post._id}`, {
                 data: { username: user.username }
             })
-            // window.location.replace('/');
+            window.location.replace('/');
             setUpdateMode(false)
         } catch (error) {
 
@@ -66,7 +66,7 @@ export default function SinglePost({ postSlug }) {
                     updateMode ? (<input type="text" className='singlePostTitleInput' value={title} onChange={(e) => setTitle(e.target.value)} />)
                         : (
                             <h1 className="singlePostTitle">{title}
-                                {user?.username === post.username &&
+                                {user?.username === post.username || user.isAdmin ?(
                                     <div className="singlePostEdit" >
                                         <i className="singlePostIcon fa-solid fa-pen-to-square" onClick={() => {
 
@@ -74,6 +74,9 @@ export default function SinglePost({ postSlug }) {
                                         }}></i>
                                         <i className="singlePostIcon fa-solid fa-trash" onClick={handleDelete}></i>
                                     </div>
+                                    ):(
+                                        <></>
+                                    )
                                 }
                             </h1>
                         )

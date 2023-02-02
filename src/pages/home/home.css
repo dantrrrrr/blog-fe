@@ -1,5 +1,6 @@
 .home{
     display: flex;
+    transition: all 3s ease;
 }
 @media screen and (max-width: 440px) {
     .home{

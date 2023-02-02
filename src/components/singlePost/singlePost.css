@@ -110,7 +110,24 @@
     height: auto;
     object-fit: contain;
 }
-
+.singlePostContent a{
+    text-decoration:none ;
+    color: var(--secondary);
+}
+.singlePostContent .twitter-tweet{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin: 20px 0;
+}
+.singlePostContent .twitter-tweet iframe{
+    width: 50vw;
+    /* min-height: 450px; */
+    /* max-height: 450px; */
+    height: 400px;
+}
 .singlePostButton {
     border: none;
     background-color: teal;

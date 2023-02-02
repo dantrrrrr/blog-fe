@@ -110,6 +110,9 @@
     height: auto;
     object-fit: contain;
 }
+.singlePostContent h2{
+    margin: 20px 0;
+}
 .singlePostContent a{
     text-decoration:none ;
     color: var(--secondary);

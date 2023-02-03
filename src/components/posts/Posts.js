@@ -1,10 +1,12 @@
 import './posts.css';
 import Post from '../post/Post';
 import { Link, useParams } from 'react-router-dom';
-import Loading  from 'react-loading';
-export default function Posts({ posts, isLoading }) {
+import Loading from 'react-loading';
+import { useContext } from 'react';
+import { Context } from '../../context/Context';
+export default function Posts() {
     const { cat } = useParams();
-
+    const { posts, isLoading } = useContext(Context)
     return (
         <div className="posts">
             {
@@ -23,7 +25,7 @@ export default function Posts({ posts, isLoading }) {
                                     {
                                         posts.map(post => (
 
-                                            <Post  key={post._id} post={post} />
+                                            <Post key={post._id} post={post} />
                                         ))
                                     }
 

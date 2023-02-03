@@ -37,6 +37,11 @@
     width: 50%;
     margin: 10px 0 ;
 }
+.sidebarListItem:hover{
+    color:var(--secondary)
+    
+     /* border-left: 1px solid var(--secondary); */
+}
 .randomPostList{
     width: 100%;
     display: flex;

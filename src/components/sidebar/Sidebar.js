@@ -1,22 +1,11 @@
 import "./sidebar.css"
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from "react"
-import axios from 'axios';
+
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 export default function Sidebar() {
 
-    const [categories, setCategories] = useState([]);
-    const [randomPost, setRandomPost] = useState([]);
-    useEffect(() => {
-        const fetchCategories = async () => {
-            const res = await axios.get('https://blog-api-dantr.vercel.app/api/categories');
-            const resRandom = await axios.get('https://blog-api-dantr.vercel.app/api/posts/random');
-            setCategories(res.data);
-            setRandomPost(resRandom.data);
-
-        }
-        fetchCategories();
-
-    }, [])
+    const {categories,randomPost}=useContext(Context)
     // console.log(randomPost)
     return (
         <div className="sidebar">
@@ -30,11 +19,7 @@ export default function Sidebar() {
                 </div>
 
             </div>
-            {/* <div className="sidebarItem">
-                <span className="sidebarTitle">About me</span>
-                <img src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t39.30808-6/313030990_694843032003570_4356907175527848510_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=yp9df6DrySoAX9c4SPm&tn=riMR41esAb_QZrHU&_nc_ht=scontent.fsgn5-13.fna&oh=00_AfBT-YJqlWEvZxTXhf3fG5vvPR4AVhRyzv5e-o1HcvDS5g&oe=63AF8A70" alt="" className="sidebarImg" />
-                <p>Bruno hôm nay trông lạ quá các thầy ạ Bruno hôm nay trông lạ quá các thầy ạ Bruno hôm nay trông lạ quá các thầy ạ Bruno hôm nay trông lạ quá các thầy ạ </p>
-            </div> */}
+       
             <div className="sidebarItem">
                 <span className="sidebarTitle">Categories</span>
                 <ul className="sidebarList">

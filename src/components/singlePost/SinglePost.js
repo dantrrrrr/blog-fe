@@ -24,8 +24,12 @@ export default function SinglePost({ postSlug }) {
 
     console.log(updateMode)
     // console.log(post)
+    useEffect(()=>{
+        window.scrollTo({top:200,bottom:0,behavior:"smooth"});
+    },[isLoading])
     useEffect(() => {
         const fetchPost = async () => {
+            
             try {
                 const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts/${postSlug}`)
                 setPost(res.data)
@@ -50,20 +54,27 @@ export default function SinglePost({ postSlug }) {
             window.location.replace('/');
             setUpdateMode(false)
         } catch (error) {
-
+            console.log(error)
+        }finally{
+            setIsLoading(false)
         }
     }
     const handleUpdate = async () => {
+        setIsLoading(true)
+
         try {
             await axios.put(`https://blog-api-dantr.vercel.app/api/posts/${post._id}`, {
                 username: user.username,
                 title,
                 content
             })
-            window.location.reload()
+            // window.location.reload()
 
         } catch (error) {
-
+            console.log(error)
+        }finally{
+            setIsLoading(false);
+            setUpdateMode(false);
         }
     }
     return (

@@ -33,7 +33,8 @@
 .singlePostTitleInput {
     text-align: center;
     margin: 10px;
-    font-family: "Lora", sans-serif;
+    /* font-family: "Lora", sans-serif; */
+    font-family: "Inter", sans-serif;
     font-size: 28px;
     font-style: italic;
     background-color: transparent;

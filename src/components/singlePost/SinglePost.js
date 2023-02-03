@@ -1,13 +1,14 @@
 import './singlePost.css'
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
+import { useState, useEffect,useRef } from 'react';
 import axios from 'axios'
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { Context } from '../../context/Context';
 import { Editor } from '@tinymce/tinymce-react';
-import { useRef } from 'react';
+// import { useRef } from 'react';
+import Loading from 'react-loading'
 
 
 
@@ -19,16 +20,23 @@ export default function SinglePost({ postSlug }) {
     const [updateMode, setUpdateMode] = useState(false);
     const editorRef = useRef(null);
 
-
+    const [isLoading, setIsLoading] = useState(true)
 
     console.log(updateMode)
     // console.log(post)
     useEffect(() => {
         const fetchPost = async () => {
-            const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts/${postSlug}`)
-            setPost(res.data)
-            setTitle(res.data.title)
-            setContent(res.data.content)
+            try {
+                const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts/${postSlug}`)
+                setPost(res.data)
+                setTitle(res.data.title)
+                setContent(res.data.content)
+
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setIsLoading(false)
+            }
         }
         fetchPost()
     }, [postSlug])
@@ -60,13 +68,17 @@ export default function SinglePost({ postSlug }) {
     }
     return (
         <div className='singlePost'>
+            {
+                isLoading ? (<Loading className='loading' type='spin' color='white' height={100} width={100} />)
+            
+            :(
             <div className="singlePostWrapper">
                 {post.photo && <img src={post.photo} alt="" className="singlePostImg" />}
                 {
                     updateMode ? (<input type="text" className='singlePostTitleInput' value={title} onChange={(e) => setTitle(e.target.value)} />)
                         : (
                             <h1 className="singlePostTitle">{title}
-                                {user?.username === post.username || user.isAdmin ?(
+                                {user?.username === post.username || user.isAdmin ? (
                                     <div className="singlePostEdit" >
                                         <i className="singlePostIcon fa-solid fa-pen-to-square" onClick={() => {
 
@@ -74,9 +86,9 @@ export default function SinglePost({ postSlug }) {
                                         }}></i>
                                         <i className="singlePostIcon fa-solid fa-trash" onClick={handleDelete}></i>
                                     </div>
-                                    ):(
-                                        <></>
-                                    )
+                                ) : (
+                                    <></>
+                                )
                                 }
                             </h1>
                         )
@@ -86,6 +98,7 @@ export default function SinglePost({ postSlug }) {
                     <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
 
                 </div>
+                
                 {updateMode
                     ? (<Editor
                         className="singlePostContentInput"
@@ -120,6 +133,7 @@ export default function SinglePost({ postSlug }) {
                 }
 
             </div>
+            )}
 
         </div>
     )

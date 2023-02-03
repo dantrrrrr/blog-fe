@@ -1,30 +1,35 @@
-import './posts.css'
-import Post from '../post/Post'
-import { Link, useParams } from 'react-router-dom'
-export default function Posts({ posts }) {
-    const {cat}=useParams();
-    
+import './posts.css';
+import Post from '../post/Post';
+import { Link, useParams } from 'react-router-dom';
+import Loading  from 'react-loading';
+export default function Posts({ posts, isLoading }) {
+    const { cat } = useParams();
+
     return (
         <div className="posts">
-            {posts.length === 0 ? (
-                <>
-                    <h1 className='notfound'>There no post found <span><Link to='/'>go back</Link></span></h1>
+            {
+                isLoading ? (<Loading className='loading' type='spin' color='white' height={100} width={100} />)
+                    : (
 
-                </>
-            ) : (
-                <>
-                    <h1 className="postsTitle">{cat }</h1>
-                    <div className="postsWrapper">
-                        {
-                            posts.map(post => (
+                        posts.length === 0 ? (
+                            <>
+                                <h1 className='notfound'>There no post found <span><Link to='/'>go back</Link></span></h1>
 
-                                <Post post={post} />
-                            ))
-                        }
+                            </>
+                        ) : (
+                            <>
+                                <h1 className="postsTitle">{cat}</h1>
+                                <div className="postsWrapper">
+                                    {
+                                        posts.map(post => (
 
-                    </div>
-                </>
-            )}
+                                            <Post post={post} />
+                                        ))
+                                    }
+
+                                </div>
+                            </>
+                        ))}
 
 
         </div>

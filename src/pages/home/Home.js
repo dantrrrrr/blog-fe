@@ -16,25 +16,33 @@ const Home = () => {
     const { cat } = useParams();
     console.log(cat);
     const [posts, setPosts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    
+
     // useEffect(() => {
     //     // 👇️ scroll to top on page load
     //     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     //   }, []);
     useEffect(() => {
         const fetchPosts = async () => {
-            const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts?${cat ? "cat=" + cat : " "}`);
-            console.log(res.data);
-            setPosts(res.data);
-            
+            try {
+                const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts?${cat ? "cat=" + cat : " "}`);
+                console.log(res.data);
+                setPosts(res.data);
+            } catch (error) {
+
+            } finally {
+                setIsLoading(false);
+            }
+
+
 
         }
         fetchPosts();
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        window.scrollTo({ top: 300, left: 0, behavior: 'smooth' });
 
     }, [cat])
-
+    console.log(isLoading)
 
     return (
         <>
@@ -42,7 +50,7 @@ const Home = () => {
 
             <div className='home' >
 
-                <Posts posts={posts} />
+                <Posts posts={posts} isLoading={isLoading} />
                 <Sidebar />
             </div>
         </>

@@ -89,7 +89,7 @@ export default function SinglePost({ postSlug }) {
                     updateMode ? (<input type="text" className='singlePostTitleInput' value={title} onChange={(e) => setTitle(e.target.value)} />)
                         : (
                             <h1 className="singlePostTitle">{title}
-                                {user?.username === post.username || user.isAdmin ? (
+                                {user?.username === post.username || user?.isAdmin ? (
                                     <div className="singlePostEdit" >
                                         <i className="singlePostIcon fa-solid fa-pen-to-square" onClick={() => {
 

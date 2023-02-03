@@ -29,11 +29,14 @@
     
 }
 .postTitle{
-    font-family: 'Josefin Sans',sans-serif;
+    /* font-family: 'Josefin Sans',sans-serif; */
+    font-family: "Inter", sans-serif;
+
     font-size: 24px;
     font-weight: 600;
     margin-top: 20px;
     cursor: pointer;
+    text-align: center;
 }
 .postDate{
     font-family: 'Lora',sans-serif;

@@ -23,7 +23,7 @@ export default function Posts({ posts, isLoading }) {
                                     {
                                         posts.map(post => (
 
-                                            <Post post={post} />
+                                            <Post  key={post._id} post={post} />
                                         ))
                                     }
 

@@ -15,14 +15,14 @@ import Loading from 'react-loading'
 export default function SinglePost({ postSlug }) {
     const [post, setPost] = useState({});
     const [title, setTitle] = useState("")
-    const [desc, setDesc] = useState("")
+    // const [desc, setDesc] = useState("")
     const [content, setContent] = useState("")
     const [updateMode, setUpdateMode] = useState(false);
     const editorRef = useRef(null);
 
     const [isLoading, setIsLoading] = useState(true)
 
-    console.log(updateMode)
+    // console.log(updateMode)
     // console.log(post)
     useEffect(()=>{
         window.scrollTo({top:200,bottom:0,behavior:"smooth"});
@@ -135,9 +135,9 @@ export default function SinglePost({ postSlug }) {
                     />)
                     : (
 
-                        <p className='singlePostContent'>
+                        <div className='singlePostContent'>
                             {parse(`${content}`)}
-                        </p>
+                        </div>
                     )}
                 {updateMode &&
                     <button className='singlePostButton' onClick={handleUpdate}>Update</button>

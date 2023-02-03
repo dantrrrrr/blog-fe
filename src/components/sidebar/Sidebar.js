@@ -17,7 +17,7 @@ export default function Sidebar() {
         fetchCategories();
 
     }, [])
-    console.log(randomPost)
+    // console.log(randomPost)
     return (
         <div className="sidebar">
             <div className="sidebarItem">
@@ -40,7 +40,7 @@ export default function Sidebar() {
                 <ul className="sidebarList">
                     {
                         categories.map((cat) => (
-                            <li className="sidebarListItem"><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
+                            <li key={cat._id} className="sidebarListItem"><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
 
                         ))
                     }
@@ -52,7 +52,7 @@ export default function Sidebar() {
                 <ul className=" randomPostList">
                     {
                         randomPost.map((post) => (
-                            <Link className='link' to={`/post/${post.slug}`}>
+                            <Link className='link' key={post._id} to={`/post/${post.slug}`}>
                                 <li className="randomPostItem">
                                     <img src={post.photo} className="randomPostImg" alt="" />
                                     <span className="randomPostTitle">{post.title}</span>

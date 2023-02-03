@@ -31,7 +31,7 @@ const TopBar = () => {
             <div className="topRight">
                 <label htmlFor="searchInput">
 
-                    <i class="topSearchIcon fa-solid fa-magnifying-glass"></i>
+                    <i className="topSearchIcon fa-solid fa-magnifying-glass"></i>
                 </label>
                 {/* <input type="text" className='searchInput' id='searchInput' placeholder='Type for search .....' /> */}
                 {user

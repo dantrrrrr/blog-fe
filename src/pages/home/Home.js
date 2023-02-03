@@ -14,7 +14,7 @@ const Home = () => {
     // console.log(searchParams.get('user'));
     // console.log(searchParams.get('cat'));
     const { cat } = useParams();
-    console.log(cat);
+    // console.log(cat);
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -27,7 +27,7 @@ const Home = () => {
         const fetchPosts = async () => {
             try {
                 const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts?${cat ? "cat=" + cat : " "}`);
-                console.log(res.data);
+                // console.log(res.data);
                 setPosts(res.data);
             } catch (error) {
 
@@ -42,7 +42,7 @@ const Home = () => {
         window.scrollTo({ top: 300, left: 0, behavior: 'smooth' });
 
     }, [cat])
-    console.log(isLoading)
+    // console.log(isLoading)
 
     return (
         <>

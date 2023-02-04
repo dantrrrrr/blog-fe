@@ -14,7 +14,6 @@ const Settings = () => {
 
     console.log(user)
     const handleSubmit = async (e) => {
-        // setContent(editorRef.current.getContent())
         e.preventDefault();
         const updatedUser = {
             username,
@@ -57,6 +56,7 @@ const Settings = () => {
                 <div className="settingsTitle">
                     {/* <div className="settingsUpdateTitle">Update </div>
                     <div className="settingsDeleteTitle">Delete </div> */}
+                    <h2 className=''>Setting Account</h2>
                 </div>
                 <form action="" className="settingsForm" onSubmit={handleSubmit}>
                     <label htmlFor="">Profile picture</label>
@@ -82,7 +82,7 @@ const Settings = () => {
                     <button className='settingsUpdate'>Update</button>
                 </form>
             </div>
-            <Sidebar />
+            {/* <Sidebar /> */}
         </div>
     );
 }

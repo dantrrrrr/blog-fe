@@ -40,6 +40,12 @@
     cursor: not-allowed;
     background-color: coral;
 }
+.error{
+    color: rgba(228, 30, 30, 0.8);
+    text-align: center;
+    margin: 20px 10px;
+    
+}
 .registerBtn{
     position: absolute;
     top: 70px;

@@ -1,18 +1,18 @@
 .settings{
     display: flex;
-    margin-top: 50px;
+    margin-top: 75px;
 
 }
 
 .settingWrapper{
-    flex: 9;
-    padding: 20px 50px;
+    flex: 12;
+    padding: 20px 200px;
 }
 
 .settingsTitle{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .settingsUpdateTitle{

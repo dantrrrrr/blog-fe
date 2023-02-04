@@ -8,6 +8,9 @@ import axios from 'axios'
 const Login = () => {
     const [username,setUsername]=useState();
     const [password,setPassword]=useState();
+    const [fetchError,setFetchError]=useState("");
+    const [isLogin,setIsLogin]=useState("");
+
     const {user,dispatch,isFetching} =useContext(Context);
   
     // useEffect(()=>{
@@ -38,12 +41,16 @@ const Login = () => {
             
         } catch (error) {
             dispatch({type:"LOGIN_FAILURE"});
-           console.log(error.response.error)
+        //    console.log(error.response.data)
+           setFetchError(error.response.data);
+           console.log(fetchError)
                 
+        }finally{
+            
         }
 
     }   
-    console.log(user)
+    user && console.log(user)
     return (
         <div className='login'>
             <span className="loginTitle">Login</span>
@@ -53,6 +60,9 @@ const Login = () => {
                 <label htmlFor="">Password</label>
                 <input type="password" placeholder='Enter Password ' className='loginInput' onChange={e=>setPassword(e.target.value)}/>
               <button className='loginButton' disabled={isFetching} >Login</button>
+              {fetchError && (
+                <span className='error'>{fetchError}</span>
+              )}
 
             </form>
             <button className='registerBtn'>

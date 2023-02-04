@@ -17,7 +17,8 @@ export const ContextProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(state.user))
     }, [state.user])
     //// home
-    const { cat } = useParams();
+    // const { cat } = useParams();
+    const [catSlug,setCatSlug] =useState('');
     // console.log(cat);
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,7 @@ export const ContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts?${cat ? "cat=" + cat : " "}`);
+                const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts?${catSlug ? "cat=" + catSlug : " "}`);
                 // console.log(res.data);
                 setPosts(res.data);
             } catch (error) {
@@ -37,7 +38,7 @@ export const ContextProvider = ({ children }) => {
         fetchPosts();
         window.scrollTo({ top: 300, left: 0, behavior: 'smooth' });
 
-    }, [cat])
+    }, [catSlug])
     ////side bar
     const [categories, setCategories] = useState([]);
     const [randomPost, setRandomPost] = useState([]);
@@ -63,7 +64,9 @@ export const ContextProvider = ({ children }) => {
                 posts,
                 isLoading,
                 categories,
-                randomPost
+                randomPost,
+                catSlug,
+                setCatSlug
 
             }
         }

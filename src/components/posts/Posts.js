@@ -4,9 +4,13 @@ import { Link, useParams } from 'react-router-dom';
 import Loading from 'react-loading';
 import { useContext } from 'react';
 import { Context } from '../../context/Context';
+import { useEffect } from 'react';
 export default function Posts() {
     const { cat } = useParams();
-    const { posts, isLoading } = useContext(Context)
+    const { posts, isLoading,catSlug,setCatSlug } = useContext(Context)
+    useEffect(() => {
+        setCatSlug(cat)
+    }, [cat]);
     return (
         <div className="posts">
             {

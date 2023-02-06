@@ -16,21 +16,18 @@ export const ContextProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('user', JSON.stringify(state.user))
     }, [state.user])
-    //// home
-    // const { cat } = useParams();
+   
     const [catSlug, setCatSlug] = useState('');
-    // const [filteredCategory, setFilteredCategory] = useState('');
-    // console.log(cat);
+  
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const res = await AxiosRequest.get(`/api/posts?${catSlug ? "cat=" + catSlug : " "}`);
-               // const res = await AxiosRequest.get(`/api/posts`);
-                // console.log(res.data);
+             
                 setPosts(res.data);
-                console.log(posts)
+             
             } catch (error) {
 
             } finally {

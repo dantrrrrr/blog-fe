@@ -8,7 +8,7 @@ const Reducer =(state,action)=>{
 
             };
         case "LOGIN_SUCCESS" :
-            console.log(action.payload)
+            //console.log(action.payload)
             return {
                 user:action.payload,
                 isFetching:false,

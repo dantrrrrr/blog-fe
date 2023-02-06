@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 
 import { useContext } from "react";
 import { Context } from "../../context/Context";
-export default function Sidebar() {
+import React from 'react'
+import { memo } from "react";
 
-    const {categories,randomPost}=useContext(Context)
+
+const Sidebar = () => {
+
+    const { categories, randomPost } = useContext(Context)
     // console.log(randomPost)
     return (
         <div className="sidebar">
@@ -19,7 +23,7 @@ export default function Sidebar() {
                 </div>
 
             </div>
-       
+
             <div className="sidebarItem">
                 <span className="sidebarTitle">Categories</span>
                 <ul className="sidebarList">
@@ -35,7 +39,7 @@ export default function Sidebar() {
             <div className="sidebarItem">
                 <span className="sidebarTitle">Đề xuất</span>
                 <ul className=" randomPostList">
-                    {
+                    {   
                         randomPost.map((post) => (
                             <Link className='link' key={post._id} to={`/post/${post.slug}`}>
                                 <li className="randomPostItem">
@@ -54,3 +58,4 @@ export default function Sidebar() {
         </div>
     )
 }
+export default memo(Sidebar)

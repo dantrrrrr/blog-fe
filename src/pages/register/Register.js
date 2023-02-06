@@ -2,6 +2,7 @@ import './register.css';
 import {Link } from 'react-router-dom'
 import { useState } from 'react';
 import axios from 'axios';
+import { AxiosRequest } from '../../requests/request';
 
 const Register = () => {
     const [username,setUsername ]=useState();
@@ -12,7 +13,7 @@ const Register = () => {
         setError(false)
         e.preventDefault();
         try {
-            const res = await axios.post('https://blog-api-dantr.vercel.app/api/auth/register',{
+            const res = await AxiosRequest.post('/api/auth/register',{
                 username,
                 email,
                 password

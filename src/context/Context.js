@@ -1,6 +1,6 @@
-import axios from "axios";
 import { createContext, useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AxiosRequest } from "../requests/request";
 import Reducer from "./Reducer";
 
 const INITIAL_STATE = {
@@ -18,34 +18,52 @@ export const ContextProvider = ({ children }) => {
     }, [state.user])
     //// home
     // const { cat } = useParams();
-    const [catSlug,setCatSlug] =useState('');
+    const [catSlug, setCatSlug] = useState('');
+    // const [filteredCategory, setFilteredCategory] = useState('');
     // console.log(cat);
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts?${catSlug ? "cat=" + catSlug : " "}`);
+                const res = await AxiosRequest.get(`/api/posts?${catSlug ? "cat=" + catSlug : " "}`);
+               // const res = await AxiosRequest.get(`/api/posts`);
                 // console.log(res.data);
                 setPosts(res.data);
+                console.log(posts)
             } catch (error) {
 
             } finally {
                 setIsLoading(false);
             }
         }
+        console.log('run')
         fetchPosts();
-        window.scrollTo({ top: 300, left: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 200, left: 0, behavior: 'smooth' });
 
-    }, [catSlug])
+    },[catSlug])
+    
+    // useEffect(() => {
+
+    //     const filterCategory = (cat) => {
+    //         const result = posts.filter(post => (post.categories.includes(cat)));
+    //         console.log(result)
+    //         // console.log(category)
+    //         setFilteredCategory(result)
+    //         return result
+    //     }
+    //     filterCategory(catSlug);
+    //     window.scrollTo({ top: 200, left: 0, behavior: 'smooth' });
+
+    // }, [catSlug])
+
     ////side bar
     const [categories, setCategories] = useState([]);
     const [randomPost, setRandomPost] = useState([]);
     useEffect(() => {
         const fetchCategories = async () => {
-            const res = await axios.get('https://blog-api-dantr.vercel.app/api/categories');
-            const resRandom = await axios.get('https://blog-api-dantr.vercel.app/api/posts/random');
+            const res = await AxiosRequest.get('/api/categories');
+            const resRandom = await AxiosRequest.get('/api/posts/random');
             setCategories(res.data);
             setRandomPost(resRandom.data);
 
@@ -53,6 +71,7 @@ export const ContextProvider = ({ children }) => {
         fetchCategories();
 
     }, [])
+
 
     return (
         <Context.Provider value={
@@ -62,11 +81,14 @@ export const ContextProvider = ({ children }) => {
                 error: state.error,
                 dispatch,
                 posts,
+                setPosts,
                 isLoading,
+                setIsLoading,
                 categories,
                 randomPost,
                 catSlug,
-                setCatSlug
+                setCatSlug,
+               
 
             }
         }

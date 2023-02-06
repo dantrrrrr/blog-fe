@@ -1,9 +1,9 @@
 import './write.css'
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useState } from 'react';
-import axios from 'axios';
 import { Context } from '../../context/Context';
+import { AxiosRequest, BASE_URL } from '../../requests/request';
 
 function Write() {
     const editorRef = useRef(null);
@@ -16,12 +16,12 @@ function Write() {
 
     const { user } = useContext(Context);
 
-    const log = () => {
-        setContent(editorRef.current.getContent())
-    };
+    // const log = () => {
+    //     setContent(editorRef.current.getContent())
+    // };
     // console.log({ title, file, content })
-    // console.log(categories)
-    console.log(fileURL)
+    console.log("render")
+    // console.log(fileURL)
 
     const handleSubmit = async (e) => {
         setContent(editorRef.current.getContent())
@@ -40,18 +40,18 @@ function Write() {
             data.append('file', file);
             newPost.photo = filename;
             try {
-                await axios.post('https://blog-api-dantr.vercel.app/api/upload', data);
+                await AxiosRequest.post('/api/upload', data);
 
             } catch (error) {
                 console.log(error.response)
             }
         }
         try {
-            const res = await axios.post('https://blog-api-dantr.vercel.app/api/posts', {
+            const res = await AxiosRequest.post('/api/posts', {
                 "title": title,
                 "desc": desc,
                 "content": content,
-                "photo": `${!file ? fileURL :"https://blog-api-dantr.vercel.app/images/" + newPost.photo}`,
+                "photo": `${!file ? fileURL : BASE_URL + newPost.photo}`,
                 "username": user.username,
                 "categories": categories.split(',')
             })
@@ -76,13 +76,17 @@ function Write() {
                     fileURL && !file &&
                     <img src={fileURL} alt="" className="writeImg" />
                 }
+                {
+                    !file && !fileURL &&
+                    <label className='fileInputArea' htmlFor="fileInput">
+                        <i className=" writeIcon fa-solid fa-plus"></i>
+                    </label>
+                }
             </div>
             <form className="writeForm" onSubmit={handleSubmit}>
 
                 <div className="writeformGroup">
-                    <label htmlFor="fileInput">
-                        <i className=" writeIcon fa-solid fa-plus"></i>
-                    </label>
+
                     <input type="file" id="fileInput" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
                     <label htmlFor="fileURL" >or paste Image URL here :</label>
                     <input type="text" id="fileURL" className='fileURL' onChange={e => setFileURL(e.target.value)} />

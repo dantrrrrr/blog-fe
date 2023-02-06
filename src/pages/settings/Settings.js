@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
+// import Sidebar from '../../components/sidebar/Sidebar';
 import { Context } from '../../context/Context';
 import './settings.css';
-import axios from 'axios';
+// import axios from 'axios';
+import { AxiosRequest } from '../../requests/request';
 
 const Settings = () => {
     const { user,dispatch } = useContext(Context);
@@ -37,7 +38,7 @@ const Settings = () => {
         //     }
         // }
         try {
-            await axios.put(`https://blog-api-dantr.vercel.app/api/user/${user._id}`,
+            await AxiosRequest.put(`/api/user/${user._id}`,
                 updatedUser
             )
             dispatch({type:"LOGOUT"});

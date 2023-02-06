@@ -3,31 +3,25 @@ import {Link } from 'react-router-dom';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Context } from '../../context/Context';
 import axios from 'axios'
+import { AxiosRequest } from '../../requests/request';
 
 
 const Login = () => {
     const [username,setUsername]=useState();
     const [password,setPassword]=useState();
     const [fetchError,setFetchError]=useState("");
-    const [isLogin,setIsLogin]=useState("");
+    // const [isLogin,setIsLogin]=useState("");
 
     const {user,dispatch,isFetching} =useContext(Context);
   
-    // useEffect(()=>{
-    //     const tessting= async ()=>{
-    //         const res =await axios.post("http://localhost:5000/api/auth/login",{username:'admin',password:'01022001'})
-    //         console.log(res.data)
-    //     }
-    //     tessting()
-    // },[])
-    // console.log(dispatch)
+
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
         dispatch({type:"LOGIN_START"});
 
         try {
-            const res = await axios.post('https://blog-api-dantr.vercel.app/api/auth/login',{
+            const res = await AxiosRequest.post('/api/auth/login',{
                 username,
                 password,
             },

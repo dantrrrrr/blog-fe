@@ -11,15 +11,13 @@ import styled from 'styled-components'
 import { useContext } from "react";
 import { Context } from "./context/Context";
 
-const Container = styled.div`
- 
-`
+
 function App() {
   const { user } = useContext(Context);
   
 
   return (
-    <Container>
+    <>
       <Router>
         {/* <SideBarLeft /> */}
 
@@ -43,7 +41,7 @@ function App() {
         {/* <Footer/> */}
 
       </Router>
-    </Container>
+    </>
 
   );
 }

@@ -9,10 +9,12 @@ import { Context } from '../../context/Context';
 import { Editor } from '@tinymce/tinymce-react';
 // import { useRef } from 'react';
 import Loading from 'react-loading'
+import { AxiosRequest } from '../../requests/request';
+import { memo } from 'react';
 
 
 
-export default function SinglePost({ postSlug }) {
+ const SinglePost = ({ postSlug })=> {
     const [post, setPost] = useState({});
     const [title, setTitle] = useState("")
     // const [desc, setDesc] = useState("")
@@ -24,6 +26,7 @@ export default function SinglePost({ postSlug }) {
 
     // console.log(updateMode)
     // console.log(post)
+
     useEffect(()=>{
         window.scrollTo({top:200,bottom:0,behavior:"smooth"});
     },[isLoading])
@@ -31,8 +34,9 @@ export default function SinglePost({ postSlug }) {
         const fetchPost = async () => {
             
             try {
-                const res = await axios.get(`https://blog-api-dantr.vercel.app/api/posts/${postSlug}`)
+                const res = await AxiosRequest.get(`/api/posts/${postSlug}`)
                 setPost(res.data)
+                //
                 setTitle(res.data.title)
                 setContent(res.data.content)
 
@@ -43,12 +47,13 @@ export default function SinglePost({ postSlug }) {
             }
         }
         fetchPost()
+
     }, [postSlug])
     const { user } = useContext(Context)
     // console.log(user)
     const handleDelete = async () => {
         try {
-            await axios.delete(`https://blog-api-dantr.vercel.app/api/posts/${post._id}`, {
+            await AxiosRequest.delete(`/api/posts/${post._id}`, {
                 data: { username: user.username }
             })
             window.location.replace('/');
@@ -63,7 +68,7 @@ export default function SinglePost({ postSlug }) {
         setIsLoading(true)
 
         try {
-            await axios.put(`https://blog-api-dantr.vercel.app/api/posts/${post._id}`, {
+            await AxiosRequest.put(`/api/posts/${post._id}`, {
                 username: user.username,
                 title,
                 content
@@ -149,3 +154,4 @@ export default function SinglePost({ postSlug }) {
         </div>
     )
 }
+export default memo(SinglePost)

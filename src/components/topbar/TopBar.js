@@ -1,7 +1,8 @@
 import './topbar.css'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext,memo } from 'react'
 import { Context } from '../../context/Context'
+
 
 const TopBar = () => {
     const { user, dispatch } = useContext(Context);
@@ -63,4 +64,4 @@ const TopBar = () => {
     )
 }
 
-export default TopBar
+export default memo(TopBar)

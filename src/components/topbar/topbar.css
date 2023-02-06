@@ -1,5 +1,6 @@
 .topbar {
     width: 100%;
+    min-height: 53px;
     box-sizing: border-box;
     position: fixed;
     top: 0;

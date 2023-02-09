@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-  
+    
 
     const [error, setError] = useState(false);
     const onSubmit = async (data) => {

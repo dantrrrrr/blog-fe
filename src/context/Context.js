@@ -1,5 +1,4 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
 import { AxiosRequest } from "../requests/request";
 import Reducer from "./Reducer";
 
@@ -12,7 +11,7 @@ export const Context = createContext(INITIAL_STATE);
 
 export const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
-
+    //set user to local storage
     useEffect(() => {
         localStorage.setItem('user', JSON.stringify(state.user))
     }, [state.user])

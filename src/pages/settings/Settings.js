@@ -10,7 +10,7 @@ const Settings = () => {
     const [file, setFile] = useState(null);
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
-    const [password, setPassword] = useState(user.password);
+    const [password, setPassword] = useState("**********");
     console.log(username,email,password);
 
     console.log(user)

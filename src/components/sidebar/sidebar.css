@@ -1,105 +1,93 @@
-.sidebar{
-    background-color: var(--background);
-    padding: 20px;
-    /* flex: 3; */
-    width: 20vw;
-    color: var(--primary);
-    display: flex;
+.sidebar {
+  width: 20vw;
+  background: var(--background-color);
+  color: var(--text-color);
+  padding: 2rem 1rem;
+  padding-top: 5rem;
+}
+.sidebar .sidebarItem {
+  padding: 0.5rem 0;
+}
+.sidebar .sidebarItem .sidebarTitle {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  padding-left: 0.3rem;
+  border-bottom: 2px solid var(--secondary-color);
+}
+.sidebar .sidebarItem .sidebarSocial {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.sidebar .sidebarItem .sidebarSocial .sidebarIcon {
+  font-size: 20px;
+  cursor: pointer;
+}
+.sidebar .sidebarItem .sidebarSocial .sidebarIcon:hover {
+  color: var(--secondary-color);
+}
+.sidebar .sidebarItem .sidebarList {
+  margin: 0.5rem 0;
+  flex-direction: column;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.sidebar .sidebarItem .sidebarList .sidebarListItem {
+  padding: 0.3rem;
+}
+.sidebar .sidebarItem .sidebarList .sidebarListItem:hover {
+  color: var(--secondary-color);
+}
+.sidebar .sidebarItem .randomPostList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.sidebar .sidebarItem .randomPostList .randomPostItem {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  transition: 1s ease;
+}
+.sidebar .sidebarItem .randomPostList .randomPostItem .randomPostImg {
+  width: 100%;
+  aspect-ratio: 1.5;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.sidebar .sidebarItem .randomPostList .randomPostItem .randomPostImg:hover {
+  transform: scale(1.2);
+}
+.sidebar .sidebarItem .randomPostList .randomPostItem .randomPostTitle {
+  font-size: 13px;
+  font-weight: 500;
+  text-align: justify;
+  padding: 0.5rem 0;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-spacing: 1px;
+  text-align: justify;
+}
 
-    flex-direction: column;
-}
-.sidebarItem{
-    margin: 10px 0;
-
-}
-.sidebarSocial{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.sidebarIcon{
-    color: var(--icon-social);
-    font-size: 40px;
-    margin-right: 20px;
-}
-.sidebarTitle{
-    font-size: 20px;
-    border-bottom: 1px solid var(--secondary);
-}
-.sidebarList{
-    list-style: none;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 10px 0 ;
-}
-.sidebarListItem{   
-    width: 50%;
-    margin: 10px 0 ;
-}
-.sidebarListItem:hover{
-    color:var(--secondary)
-    
-     /* border-left: 1px solid var(--secondary); */
-}
-.randomPostList{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-.randomPostItem{
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.randomPostImg{
-    width: 80%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
-    
-}
-.randomPostTitle{
-    font-size: 12px;
-    text-align: center;
-    padding: 10px 30px;
-}
-@media screen and (max-width: 440px) {
-    .sidebar{
-        width: 100vw;
-        height: max-content;
-        padding: 20px;
-        
-
-    }
-    .sidebarItem{
-        margin: 10px 30px;
-    }
-    .randomPostList{
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    .randomPostItem{
-        width: 40vw;
-        margin: 10px 0;
-        height: 150px;
-
-        box-sizing: border-box;
-    }
-    .randomPostImg{
-        width: 100%;
-        height: 90%;
-        object-fit: cover;
-    }
-    .randomPostTitle{
-        text-overflow: clip;
-        font-size:12px ;
-        padding: 0;
-        margin-top: 10px;
-    }
-
-}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100vw;
+    padding: 2rem 3rem;
+    border-top: 1px solid lightgrey;
+  }
+  .sidebar .sidebarItem .randomPostList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sidebar .sidebarItem .randomPostList .randomPostTitle {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-spacing: 1px;
+    text-align: justify;
+  }
+}/*# sourceMappingURL=sidebar.css.map */

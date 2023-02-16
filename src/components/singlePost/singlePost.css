@@ -1,163 +1,148 @@
 .singlePost {
-    flex: 9;
-    padding: 20px;
-    background-color: var(--background);
-    color: var(--primary);
-    min-height: 100vh;
-
+  flex: 9;
+  padding: 2rem 4rem;
+  background-color: var(--background-color);
+  color: var(--primary);
+  min-height: 100vh;
+  position: relative;
+}
+.singlePost .loading {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.singlePost .singlePostWrapper {
+  padding: 20px;
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+}
+.singlePost .singlePostWrapper .pathSinglePost {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  font-size: 14px;
+  margin: 1rem 0;
+}
+.singlePost .singlePostWrapper .singlePostImg {
+  width: 60%;
+  margin: 10px auto;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 5px;
+  transition: all 1.5s ease;
+}
+.singlePost .singlePostWrapper .singlePostTitleInput {
+  text-align: center;
+  margin: 10px;
+  /* font-family: "Lora", sans-serif; */
+  font-family: "Inter", sans-serif;
+  font-size: 28px;
+  font-style: italic;
+  background-color: transparent;
+  color: var(--primary);
+  border: none;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--primary);
+}
+.singlePost .singlePostWrapper .singlePostTitle {
+  text-align: center;
+  margin: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 28px;
+  font-style: bold;
+}
+.singlePost .singlePostWrapper .singlePostTitle .singlePostEdit {
+  float: right;
+  font-size: 16px;
+}
+.singlePost .singlePostWrapper .singlePostTitle .singlePostEdit .singlePostIcon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.singlePost .singlePostWrapper .singlePostInfo {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  font-size: 16px;
+  font-family: "Varela Round", sans-serif;
+  color: #b39656;
+}
+.singlePost .singlePostWrapper .singlePostContent {
+  color: var(--primary);
+  font-size: 16px;
+  line-height: 25px;
+  text-align: justify;
+  line-height: 28px;
+  /* letter-spacing: 0.2px; */
+  font-family: "Inter", sans-serif;
+  word-spacing: 0;
+}
+.singlePost .singlePostWrapper .singlePostContent img {
+  width: 50%;
+  height: auto;
+  transform: translateX(50%);
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin: 1rem 0;
+}
+.singlePost .singlePostWrapper .singlePostContent h2 {
+  margin: 20px 0;
+}
+.singlePost .singlePostWrapper .singlePostContent a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.singlePost .singlePostWrapper .singlePostContent a:hover {
+  color: var(--secondary-color);
+}
+.singlePost .singlePostWrapper .singlePostContent .twitter-tweet {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin: 20px 0;
+}
+.singlePost .singlePostWrapper .singlePostContent .twitter-tweet iframe {
+  width: 50vw;
+  /* min-height: 450px; */
+  /* max-height: 450px; */
+  height: 400px;
+}
+.singlePost .singlePostWrapper .singlePostContentInput {
+  border: none;
+  background-color: var(--background);
+}
+.singlePost .singlePostWrapper .singlePostContentInput:focus {
+  outline: none;
+}
+.singlePost .singlePostWrapper .singlePostButton {
+  border: none;
+  background-color: teal;
+  width: 100px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-top: 20px;
 }
 
-.singlePostWrapper {
-    padding: 20px;
-    padding-right: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.singlePostImg {
-    width: 60%;
-    margin: 10px auto;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 5px;
-    transition: all 1.5s ease;
-}
-
-.singlePostTitle {
-    text-align: center;
-    margin: 10px;
-    font-family: "Inter", sans-serif;
-    font-size: 28px;
-    font-style: bold;
-}
-
-.singlePostTitleInput {
-    text-align: center;
-    margin: 10px;
-    /* font-family: "Lora", sans-serif; */
-    font-family: "Inter", sans-serif;
-    font-size: 28px;
-    font-style: italic;
-    background-color: transparent;
-    color: var(--primary);
-    border: none;
-    padding-bottom: 5px;
-    border-bottom: 1px solid var(--primary);
-}
-
-.singlePostTitleInput:focus {
-    outline: none;
-}
-
-.singlePostEdit {
-    float: right;
-    font-size: 16px;
-}
-
-.singlePostIcon {
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.singlePostIcon:first-child {
-    color: teal;
-}
-
-.singlePostIcon:last-child {
-    color: tomato;
-}
-
-.singlePostInfo {
-    display: flex;
-    margin-bottom: 20px;
-    justify-content: space-between;
-    font-size: 16px;
-    font-family: 'Varela Round', sans-serif;
-    color: #b39656;
-}
-
-.singlePostAuthor {}
-
-.singlePostDate {}
-
-.singlePostContent {
-    color: var(--primary);
-    font-size: 16px;
-    line-height: 25px;
-    text-align: justify;
-    line-height: 28px;
-    /* letter-spacing: 0.2px; */
-    font-family: 'Inter',sans-serif;
-    word-spacing: 0;
-
-}
-
-.singlePostContentInput {
-    border: none;
-    background-color: var(--background);
-
-}
-/* 
-.singlePostContent::first-letter {
-    margin-left: 20px;
-    font-size: 30px;
-    font-weight: 600;
-
-} */
-
-.singlePostContent img {
-    width: 90%;
-    margin: 20px;
-    margin-left: 40px;
-
-    height: auto;
-    object-fit: contain;
-}
-.singlePostContent h2{
-    margin: 20px 0;
-}
-.singlePostContent a{
-    text-decoration:none ;
-    color: var(--secondary);
-}
-.singlePostContent .twitter-tweet{
+@media screen and (max-width: 768px) {
+  .singlePost {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0;
+  }
+  .singlePost .singlePostWrapper {
+    padding: 2rem 3rem;
+  }
+  .singlePost .singlePostWrapper .singlePostContent img {
     height: auto;
-    margin: 20px 0;
-}
-.singlePostContent .twitter-tweet iframe{
-    width: 50vw;
-    /* min-height: 450px; */
-    /* max-height: 450px; */
-    height: 400px;
-}
-.singlePostButton {
-    border: none;
-    background-color: teal;
-    width: 100px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    align-self: flex-end;
-    margin-top: 20px;
-}
-
-@media screen and (max-width: 440px) {
-    .singlePost {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .singlePostWrapper {
-        padding: 10px;
-    }
-
-    .singlePostContent img {
-        margin: 20px;
-    }
-
-}
+    width: 65%;
+    transform: translateX(25%);
+  }
+}/*# sourceMappingURL=singlePost.css.map */

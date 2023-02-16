@@ -6,14 +6,20 @@ import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Footer from "./components/footer/Footer";
-import styled from 'styled-components'
-import { useContext } from "react";
+import './app.css'
+import { useContext, useEffect } from "react";
 import { Context } from "./context/Context";
 import Navbar from "./components/navbar/Navbar";
+import Aos from 'aos'
+import 'aos/dist/aos.css'
+
 
 
 function App() {
   const { user } = useContext(Context);
+  useEffect(() => { 
+    Aos.init({duration:1500})
+  }, [])
   
 
   return (

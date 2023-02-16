@@ -16,6 +16,7 @@
     background: var(--background-color);
     color: var(--text-color);
     row-gap: 2rem;
+    border-top: 1px solid lightgray;
 
     // justify-content: center;
     .ftContact {
@@ -101,6 +102,7 @@
             .ftListItem{
                 list-style: none;
                 transition: 0.3 ease;
+                cursor: pointer;
 
 
                 .icon{
@@ -128,7 +130,7 @@
 @media screen and (max-width:768px){
     .footer{
         width: 100%;
-        padding: 1rem 1.5rem;
+        padding:2rem 3rem;
         border-top: 1px solid var(--grey-color);
             // border-bottom: 1px solid var(--grey-color);
         .ftContact{

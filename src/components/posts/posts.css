@@ -1,10 +1,23 @@
 .posts {
-  flex: 9;
+  width: 80vw;
   position: relative;
   background: var(--background-color);
   padding: 2rem 0;
+  position: relative;
+  min-height: 100vw;
+}
+.posts .notfound {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-color);
+}
+.posts .notfound a {
+  color: var(--primary-color);
 }
 .posts .loading {
+  position: absolute;
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
@@ -28,7 +41,11 @@
 }
 
 @media screen and (max-width: 768px) {
-  .posts .postWrapper {
+  .posts {
+    width: 100vw;
+    overflow: hidden;
+  }
+  .posts .postsWrapper {
     grid-template-columns: repeat(1, 1fr);
   }
 }/*# sourceMappingURL=posts.css.map */

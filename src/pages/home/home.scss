@@ -4,3 +4,8 @@
     transition: all 3s ease;
     margin-top: 50px;
 }
+@media screen and (max-width:768px) {
+    .home {
+      flex-direction: column;
+    }
+}

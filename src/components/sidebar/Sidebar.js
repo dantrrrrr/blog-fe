@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Context } from "../../context/Context";
 import React from 'react'
 import { memo } from "react";
-
+import {FiFacebook,FiInstagram,FiTwitter,FiLinkedin} from 'react-icons/fi'
 
 const Sidebar = () => {
 
@@ -16,10 +16,11 @@ const Sidebar = () => {
             <div className="sidebarItem">
                 {/* <span className="sidebarTitle">Follow us</span> */}
                 <div className="sidebarSocial">
-                    <i className="sidebarIcon fa-brands fa-square-facebook"></i>
-                    <i className="sidebarIcon fa-brands fa-square-twitter"></i>
-                    <i className="sidebarIcon fa-brands fa-square-instagram"></i>
-                    <i className="sidebarIcon fa-brands fa-square-facebook"></i>
+                   <FiFacebook className="sidebarIcon"/>
+                   <FiInstagram className="sidebarIcon"/>
+                   <FiTwitter className="sidebarIcon"/>
+                   <FiLinkedin className="sidebarIcon"/>
+                
                 </div>
 
             </div>
@@ -29,7 +30,7 @@ const Sidebar = () => {
                 <ul className="sidebarList">
                     {
                         categories.map((cat) => (
-                            <li key={cat._id} className="sidebarListItem"><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
+                            <li key={cat._id} className="sidebarListItem"   data-aos='fade-left'><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
 
                         ))
                     }
@@ -42,9 +43,9 @@ const Sidebar = () => {
                     {   
                         randomPost.map((post) => (
                             <Link className='link' key={post._id} to={`/post/${post.slug}`}>
-                                <li className="randomPostItem">
+                                <li className="randomPostItem"   data-aos='fade-up'>
                                     <img src={post.photo} className="randomPostImg" alt="" />
-                                    <span className="randomPostTitle">{post.title}</span>
+                                    <p className="randomPostTitle">{post.title}</p>
                                 </li>
                             </Link>
 

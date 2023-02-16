@@ -46,7 +46,7 @@
   color: var(--primary-color);
 }
 .post .postInfo .postTitle {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0.5rem 0;
   color: lightgray;
@@ -68,4 +68,29 @@
   overflow: hidden;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+@media screen and (max-width: 768px) {
+  .post {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    width: 100%;
+  }
+  .post .imgDiv {
+    width: 100%;
+    aspect-ratio: 1.5;
+  }
+  .post .postInfo .postTitle {
+    font-size: 14px;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-spacing: 1px;
+    text-align: justify;
+  }
+  .post .postDesc {
+    display: none;
+  }
 }/*# sourceMappingURL=post.css.map */

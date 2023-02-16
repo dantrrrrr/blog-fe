@@ -1,59 +1,64 @@
-.login{
-    height: calc(100vh - 50px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/313251536_694843022003571_7766482947946918353_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_ohc=PG3stncf79UAX_NV9_c&_nc_ht=scontent.fsgn5-12.fna&oh=00_AfDtU8AcfrxDJuON39ozXqsEYdlQQbK1yYPJ1PbaOYzUEQ&oe=63B19F61'); */
-    /* background-repeat: no-repeat;
-    background-size: cover; */
-    background-color: var(--background);
-    color: var(--primary);
+.login {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--text-color);
+  background-color: black;
+  padding: 3rem;
 }
-.loginTitle{
-    font-size: 50px;
+.login video {
+  width: 50%;
 }
-.loginForm{
-    display: flex;
-    margin-top: 20px;
-    flex-direction: column;
-    width: 30vw;
+.login .loginContainer {
+  width: 100%;
+  height: auto;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: column;
 }
-.loginForm>label{
-    margin: 10px 0;
+.login .loginContainer .loginTitle {
+  text-align: center;
 }
-.loginInput{
-    background-color: #fff;
-    padding: 10px 20px;
-    border: none;
+.login .loginContainer .loginForm {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
 }
-.loginButton{
-    cursor: pointer;
-    margin-top: 20px;
-    background-color:lightcoral;
-    border: none;
-    padding :10px;
-    color:#fff;
-    border-radius: 10px;
+.login .loginContainer label {
+  margin-left: 1rem;
 }
-.loginButton:disabled{
-    cursor: not-allowed;
-    background-color: coral;
+.login .loginContainer .loginInput {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 0.5rem 2rem;
 }
-.error{
-    color: rgba(228, 30, 30, 0.8);
-    text-align: center;
-    margin: 20px 10px;
-    
+.login .loginContainer .loginButton {
+  width: 100%;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  cursor: pointer;
 }
-.registerBtn{
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    background-color: teal;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-
+.login .loginContainer .loginButton:hover {
+  background: var(--primary-color);
 }
+.login .loginContainer .error {
+  color: red;
+  font-size: 13px;
+  text-align: center;
+}
+.login .loginContainer .registerBtn {
+  width: 100%;
+  color: black;
+  background-color: transparent;
+  border: none;
+}/*# sourceMappingURL=login.css.map */

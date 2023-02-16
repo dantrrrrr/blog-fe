@@ -12,62 +12,62 @@ function Footer() {
                 </div>
                 <div className="contactInput">
                     <input type="text" className='' />
-                    <button className="btn">
+                    <button className="btn"  data-aos='fade-left'>
                         SEND
                         <FiSend className="icon" />
                     </button>
                 </div>
             </div>
             <div className="ftLinks">
-                <div className="linkGroup">
+                <div className="linkGroup" data-aos='fade-right'>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />Facebook
                     </li>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />Instagram
                     </li>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />Telegram
                     </li>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />Youtube
                     </li>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
-                    </li>
-                </div>
-                <div className="linkGroup">
-                    <li className="ftListItem">
-                        <FiChevronRight /> link item 1
-                    </li>
-                    <li className="ftListItem">
-                        <FiChevronRight /> link item 1
-                    </li>
-                    <li className="ftListItem">
-                        <FiChevronRight /> link item 1
-                    </li>
-                    <li className="ftListItem">
-                        <FiChevronRight /> link item 1
-                    </li>
-                    <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />LinkedIn
                     </li>
                 </div>
-                <div className="linkGroup">
+                <div className="linkGroup" data-aos='fade-right'>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />About
                     </li>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />Coin
                     </li>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />Crypto
                     </li>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />Bitcoin
                     </li>
                     <li className="ftListItem">
-                        <FiChevronRight /> link item 1
+                        <FiChevronRight />Ethereum
+                    </li>
+                </div>
+                <div className="linkGroup" data-aos='fade-right'>
+                    <li className="ftListItem">
+                        <FiChevronRight />Code
+                    </li>
+                    <li className="ftListItem">
+                        <FiChevronRight />Javascript
+                    </li>
+                    <li className="ftListItem">
+                        <FiChevronRight />ReactJS
+                    </li>
+                    <li className="ftListItem">
+                        <FiChevronRight />NodeJS
+                    </li>
+                    <li className="ftListItem">
+                        <FiChevronRight />ExpressJS
                     </li>
                 </div>
             </div>

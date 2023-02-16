@@ -19,11 +19,7 @@ export default function Posts() {
         setCatSlug(cat)
 
     }, [cat]);
-    // console.log(posts)
-
-
-    // console.log("posts : ", posts)//
-    // console.log(filteredCategory)
+  
 
     return (
         <div className="posts">

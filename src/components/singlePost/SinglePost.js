@@ -1,7 +1,7 @@
 import './singlePost.css'
+
 // import { useParams } from 'react-router-dom';
 import { useState, useEffect,useRef } from 'react';
-import axios from 'axios'
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
@@ -11,6 +11,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import Loading from 'react-loading'
 import { AxiosRequest } from '../../requests/request';
 import { memo } from 'react';
+import {  FiChevronRight} from 'react-icons/fi'
 
 
 
@@ -28,7 +29,7 @@ import { memo } from 'react';
     // console.log(post)
 
     useEffect(()=>{
-        window.scrollTo({top:200,bottom:0,behavior:"smooth"});
+        window.scrollTo({top:0,bottom:0,behavior:"smooth"});
     },[isLoading])
     useEffect(() => {
         const fetchPost = async () => {
@@ -85,10 +86,15 @@ import { memo } from 'react';
     return (
         <div className='singlePost'>
             {
-                isLoading ? (<Loading className='loading' type='spin' color='white' height={100} width={100} />)
+                isLoading ? (<Loading className='loading' type='spin' color='white' height={50} width={50} />)
             
             :(
             <div className="singlePostWrapper">
+                <div className="pathSinglePost">
+                    <Link className="link" to='/'>Home</Link>  
+                    <FiChevronRight />
+                    <Link className="link" to={`/post/${postSlug}`}>{post.title}</Link>
+                </div>
                 {post.photo && <img src={post.photo} alt="" className="singlePostImg" />}
                 {
                     updateMode ? (<input type="text" className='singlePostTitleInput' value={title} onChange={(e) => setTitle(e.target.value)} />)

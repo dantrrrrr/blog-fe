@@ -8,7 +8,7 @@
 }
 .posts .notfound {
   position: absolute;
-  top: 35%;
+  top: 10rem;
   left: 50%;
   transform: translateX(-50%);
   color: var(--text-color);

@@ -40,6 +40,9 @@ function App() {
           <Route path="/write" element={user ? <Write /> : <Navigate to='/login' />} />
           <Route path="/settings" element={user ? <Settings /> : <Navigate to='/register' />} />
           <Route path="/post/:postSlug" element={<Single />} />
+          <Route path="/*"  element={<Navigate to='/' />} />
+          <Route path="*"  element={<Navigate to='/' />} />
+
 
         </Routes>
         <Footer />

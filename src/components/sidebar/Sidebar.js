@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Context } from "../../context/Context";
 import React from 'react'
 import { memo } from "react";
-import {FiFacebook,FiInstagram,FiTwitter,FiLinkedin} from 'react-icons/fi'
+import { FiFacebook, FiInstagram, FiTwitter, FiLinkedin } from 'react-icons/fi'
 
 const Sidebar = () => {
 
@@ -16,11 +16,26 @@ const Sidebar = () => {
             <div className="sidebarItem">
                 {/* <span className="sidebarTitle">Follow us</span> */}
                 <div className="sidebarSocial">
-                   <FiFacebook className="sidebarIcon"/>
-                   <FiInstagram className="sidebarIcon"/>
-                   <FiTwitter className="sidebarIcon"/>
-                   <FiLinkedin className="sidebarIcon"/>
-                
+                    <Link className="link" to='https://facebook.com/dantrrrrr'>
+                        <FiFacebook className="sidebarIcon" />
+
+                    </Link>
+                    <Link className="link" to='https://instagram.com/dantrrrrr'>
+
+                        <FiInstagram className="sidebarIcon" />
+                    </Link>
+
+                    <Link className="link" to='https://twitter.com/dantrrrrr'>
+
+                        <FiTwitter className="sidebarIcon" />
+                    </Link>
+
+                    <Link className="link" to='https://linkedinbook.com/dantrrrrr'>
+
+                        <FiLinkedin className="sidebarIcon" />
+                    </Link>
+
+
                 </div>
 
             </div>
@@ -30,7 +45,7 @@ const Sidebar = () => {
                 <ul className="sidebarList">
                     {
                         categories.map((cat) => (
-                            <li key={cat._id} className="sidebarListItem"   data-aos='fade-left'><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
+                            <li key={cat._id} className="sidebarListItem" data-aos='fade-left'><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
 
                         ))
                     }
@@ -40,10 +55,10 @@ const Sidebar = () => {
             <div className="sidebarItem">
                 <span className="sidebarTitle">Đề xuất</span>
                 <ul className=" randomPostList">
-                    {   
+                    {
                         randomPost.map((post) => (
                             <Link className='link' key={post._id} to={`/post/${post.slug}`}>
-                                <li className="randomPostItem"   data-aos='fade-up'>
+                                <li className="randomPostItem" data-aos='fade-up'>
                                     <img src={post.photo} className="randomPostImg" alt="" />
                                     <p className="randomPostTitle">{post.title}</p>
                                 </li>

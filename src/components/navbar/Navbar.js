@@ -37,11 +37,12 @@ function Navbar() {
                         <li className="navItem">
                             <Link to="/crypto" className="link navLink">Crypto</Link>
                         </li>
-                        <li className="navItem">
-                            <Link to="/about" className="link navLink">About</Link>
-                        </li>
+                       
                         <li className="navItem">
                             <Link to="/contact" className="link navLink">Contact</Link>
+                        </li>
+                        <li className="navItem">
+                            <Link to="/write" className="link navLink">Write</Link>
                         </li>
                         {user ?(<>
                             <li className="navItem">

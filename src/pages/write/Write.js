@@ -1,5 +1,5 @@
 import './write.css'
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useState } from 'react';
 import { Context } from '../../context/Context';
@@ -14,14 +14,15 @@ function Write() {
     const [content, setContent] = useState("");
     const [categories, setCategories] = useState("");
 
-    const { user } = useContext(Context);
+    const { user,headers } = useContext(Context);
 
     // const log = () => {
     //     setContent(editorRef.current.getContent())
     // };
     // console.log({ title, file, content })
-    console.log("render")
+    // console.log("render")
     // console.log(fileURL)
+    
 
     const handleSubmit = async (e) => {
         setContent(editorRef.current.getContent())
@@ -54,7 +55,8 @@ function Write() {
                 "photo": `${!file ? fileURL : BASE_URL + newPost.photo}`,
                 "username": user.username,
                 "categories": categories.split(',')
-            })
+            },
+                { headers: headers })
             window.location.replace('/post/' + res.data.slug);
         } catch (error) {
             console.log(error.response.data)

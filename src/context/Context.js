@@ -39,19 +39,7 @@ export const ContextProvider = ({ children }) => {
 
     },[catSlug])
     
-    // useEffect(() => {
-
-    //     const filterCategory = (cat) => {
-    //         const result = posts.filter(post => (post.categories.includes(cat)));
-    //         console.log(result)
-    //         // console.log(category)
-    //         setFilteredCategory(result)
-    //         return result
-    //     }
-    //     filterCategory(catSlug);
-    //     window.scrollTo({ top: 200, left: 0, behavior: 'smooth' });
-
-    // }, [catSlug])
+   
 
     ////side bar
     const [categories, setCategories] = useState([]);
@@ -67,6 +55,23 @@ export const ContextProvider = ({ children }) => {
         fetchCategories();
 
     }, [])
+    //auth
+    const [headers, setHeaders] = useState({})
+    useEffect(() => {
+
+        const data = JSON.parse(localStorage.getItem('user'))
+        var accessToken ;
+        if(data!==null){
+            accessToken=data.accessToken;   
+        }
+        setHeaders(prev=>({
+            ...prev,
+            'Content-Type': 'application/json',
+            'Authorization': accessToken
+        }))
+
+    }, [state.user]);
+   
 
 
     return (
@@ -84,6 +89,7 @@ export const ContextProvider = ({ children }) => {
                 randomPost,
                 catSlug,
                 setCatSlug,
+                headers
                
 
             }

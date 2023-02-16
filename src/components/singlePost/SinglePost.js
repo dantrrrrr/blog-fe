@@ -1,7 +1,7 @@
 import './singlePost.css'
 
 // import { useParams } from 'react-router-dom';
-import { useState, useEffect,useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
@@ -11,11 +11,11 @@ import { Editor } from '@tinymce/tinymce-react';
 import Loading from 'react-loading'
 import { AxiosRequest } from '../../requests/request';
 import { memo } from 'react';
-import {  FiChevronRight} from 'react-icons/fi'
+import { FiChevronRight } from 'react-icons/fi'
 
 
 
- const SinglePost = ({ postSlug })=> {
+const SinglePost = ({ postSlug }) => {
     const [post, setPost] = useState({});
     const [title, setTitle] = useState("")
     // const [desc, setDesc] = useState("")
@@ -25,15 +25,15 @@ import {  FiChevronRight} from 'react-icons/fi'
 
     const [isLoading, setIsLoading] = useState(true)
 
-    // console.log(updateMode)
-    // console.log(post)
+    const { headers } = useContext(Context)
+    console.log(headers)
 
-    useEffect(()=>{
-        window.scrollTo({top:0,bottom:0,behavior:"smooth"});
-    },[isLoading])
+    useEffect(() => {
+        window.scrollTo({ top: 0, bottom: 0, behavior: "smooth" });
+    }, [isLoading])
     useEffect(() => {
         const fetchPost = async () => {
-            
+
             try {
                 const res = await AxiosRequest.get(`/api/posts/${postSlug}`)
                 setPost(res.data)
@@ -55,13 +55,15 @@ import {  FiChevronRight} from 'react-icons/fi'
     const handleDelete = async () => {
         try {
             await AxiosRequest.delete(`/api/posts/${post._id}`, {
+                headers: headers
+            }, {
                 data: { username: user.username }
             })
             window.location.replace('/');
             setUpdateMode(false)
         } catch (error) {
             console.log(error)
-        }finally{
+        } finally {
             setIsLoading(false)
         }
     }
@@ -78,7 +80,7 @@ import {  FiChevronRight} from 'react-icons/fi'
 
         } catch (error) {
             console.log(error)
-        }finally{
+        } finally {
             setIsLoading(false);
             setUpdateMode(false);
         }
@@ -87,75 +89,75 @@ import {  FiChevronRight} from 'react-icons/fi'
         <div className='singlePost'>
             {
                 isLoading ? (<Loading className='loading' type='spin' color='white' height={50} width={50} />)
-            
-            :(
-            <div className="singlePostWrapper">
-                <div className="pathSinglePost">
-                    <Link className="link" to='/'>Home</Link>  
-                    <FiChevronRight />
-                    <Link className="link" to={`/post/${postSlug}`}>{post.title}</Link>
-                </div>
-                {post.photo && <img src={post.photo} alt="" className="singlePostImg" />}
-                {
-                    updateMode ? (<input type="text" className='singlePostTitleInput' value={title} onChange={(e) => setTitle(e.target.value)} />)
-                        : (
-                            <h1 className="singlePostTitle">{title}
-                                {user?.username === post.username || user?.isAdmin ? (
-                                    <div className="singlePostEdit" >
-                                        <i className="singlePostIcon fa-solid fa-pen-to-square" onClick={() => {
 
-                                            setUpdateMode(true)
-                                        }}></i>
-                                        <i className="singlePostIcon fa-solid fa-trash" onClick={handleDelete}></i>
-                                    </div>
-                                ) : (
-                                    <></>
-                                )
-                                }
-                            </h1>
-                        )
-                }
-                <div className="singlePostInfo">
-                    <span className='singlePostAuthor'>Author: <Link className='link' to={`/?user=${post.username}`}><b>{post.username}</b></Link> </span>
-                    <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
-
-                </div>
-                
-                {updateMode
-                    ? (<Editor
-                        className="singlePostContentInput"
-                        id='content'
-                        onInit={(evt, editor) => editorRef.current = editor}
-                        initialValue={content}
-                        init={{
-                            height: 500,
-                            menubar: false,
-                            plugins: [
-                                'advlist autolink lists link image charmap print preview anchor',
-                                'searchreplace visualblocks code fullscreen',
-                                'insertdatetime media table paste code help wordcount'
-                            ],
-                            toolbar: 'undo redo | formatselect | ' +
-                                'bold italic backcolor | alignleft aligncenter ' +
-                                'alignright alignjustify | bullist numlist outdent indent | ' +
-                                'removeformat | help',
-                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                        }}
-                        ref={editorRef}
-                        onChange={() => setContent(editorRef.current.getContent())}
-                    />)
                     : (
+                        <div className="singlePostWrapper">
+                            <div className="pathSinglePost">
+                                <Link className="link" to='/'>Home</Link>
+                                <FiChevronRight />
+                                <Link className="link" to={`/post/${postSlug}`}>{post.title}</Link>
+                            </div>
+                            {post.photo && <img src={post.photo} alt="" className="singlePostImg" />}
+                            {
+                                updateMode ? (<input type="text" className='singlePostTitleInput' value={title} onChange={(e) => setTitle(e.target.value)} />)
+                                    : (
+                                        <h1 className="singlePostTitle">{title}
+                                            {user?.username === post.username || user?.isAdmin ? (
+                                                <div className="singlePostEdit" >
+                                                    <i className="singlePostIcon fa-solid fa-pen-to-square" onClick={() => {
 
-                        <div className='singlePostContent'>
-                            {parse(`${content}`)}
+                                                        setUpdateMode(true)
+                                                    }}></i>
+                                                    <i className="singlePostIcon fa-solid fa-trash" onClick={handleDelete}></i>
+                                                </div>
+                                            ) : (
+                                                <></>
+                                            )
+                                            }
+                                        </h1>
+                                    )
+                            }
+                            <div className="singlePostInfo">
+                                <span className='singlePostAuthor'>Author: <Link className='link' to={`/?user=${post.username}`}><b>{post.username}</b></Link> </span>
+                                <span className='singlePostDate'>{new Date(post.createdAt).toDateString()}</span>
+
+                            </div>
+
+                            {updateMode
+                                ? (<Editor
+                                    className="singlePostContentInput"
+                                    id='content'
+                                    onInit={(evt, editor) => editorRef.current = editor}
+                                    initialValue={content}
+                                    init={{
+                                        height: 500,
+                                        menubar: false,
+                                        plugins: [
+                                            'advlist autolink lists link image charmap print preview anchor',
+                                            'searchreplace visualblocks code fullscreen',
+                                            'insertdatetime media table paste code help wordcount'
+                                        ],
+                                        toolbar: 'undo redo | formatselect | ' +
+                                            'bold italic backcolor | alignleft aligncenter ' +
+                                            'alignright alignjustify | bullist numlist outdent indent | ' +
+                                            'removeformat | help',
+                                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                    }}
+                                    ref={editorRef}
+                                    onChange={() => setContent(editorRef.current.getContent())}
+                                />)
+                                : (
+
+                                    <div className='singlePostContent'>
+                                        {parse(`${content}`)}
+                                    </div>
+                                )}
+                            {updateMode &&
+                                <button className='singlePostButton' onClick={handleUpdate}>Update</button>
+                            }
+
                         </div>
                     )}
-                {updateMode &&
-                    <button className='singlePostButton' onClick={handleUpdate}>Update</button>
-                }
-
-            </div>
-            )}
 
         </div>
     )

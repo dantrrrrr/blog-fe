@@ -1,10 +1,6 @@
-.home{
-    display: flex;
-    transition: all 3s ease;
-    margin-top: 50px;
-}
-@media screen and (max-width: 440px) {
-    .home{
-        flex-direction: column;
-    }
-}
+.home {
+  display: flex;
+  width: 100%;
+  transition: all 3s ease;
+  margin-top: 50px;
+}/*# sourceMappingURL=home.css.map */

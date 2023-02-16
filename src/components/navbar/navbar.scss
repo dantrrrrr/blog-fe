@@ -1,13 +1,8 @@
-:root {
-    --backgound-color: #1A1C20;
-    --primary-color: #CF7500;
-    --secondary-color: #F0A500;
-    --text-color: #F4F4F4;
-    --grey-color: #b2b0b0;
 
-}
 
-.navBarSection {
+.navbar {
+    position: relative;
+    top: 0;
     .navbarWrapper {
         display: flex;
         align-items: center;
@@ -18,9 +13,10 @@
         right: 0;
         z-index: 10;
         color: var(--text-color);
-        background: var(--backgound-color);
-        width: 100%;
-        padding: 1rem;
+        background: var(--background-color);
+        width: 100vw;
+        padding: 1rem 2rem;
+        box-sizing: border-box;
 
         .logoDiv {
             .logo {
@@ -47,7 +43,7 @@
         @media screen and (max-width:768px) {
             .navBar {
                 position: absolute;
-                background-color: var(--backgound-color);
+                background-color: var(--background-color);
                 width: 80%;
                 height: max-content;
                 border-radius: 10px;

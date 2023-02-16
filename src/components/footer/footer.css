@@ -1,16 +1,143 @@
-.footer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 10vh;
-    padding: 10px ;
-    font-family:'Varela Round', serif;
-    background-color:var(--background);
-    color: var(--primary);
-    font-size: 20px;
-    border-top: 1px solid var(--primary);
-    font-family: 'Varela Round', sans-serif;
-    
-
+:root {
+  --background-color: #1A1C20;
+  --primary-color: #CF7500;
+  --secondary-color: #F0A500;
+  --text-color: #F4F4F4;
+  --grey-color: #b2b0b0;
 }
+
+.footer {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background-color);
+  color: var(--text-color);
+  row-gap: 2rem;
+}
+.footer .ftContact {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.footer .ftContact .contactText {
+  color: var(--text-color);
+}
+.footer .ftContact .contactText small {
+  font-size: 13px;
+  font-weight: 400;
+}
+.footer .ftContact .contactText h2 {
+  font-size: 1.8rem;
+}
+.footer .ftContact .contactInput {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+}
+.footer .ftContact .contactInput input {
+  flex: 3;
+  padding: 0.8rem 0.9rem;
+  border-radius: 3rem;
+  outline: none;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--grey-color);
+}
+.footer .ftContact .contactInput .btn {
+  flex: 1;
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 1.3rem;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}
+.footer .ftContact .contactInput .btn:hover {
+  background-color: var(--secondary-color);
+}
+.footer .ftContact .contactInput .btn .icon {
+  font-size: 18px;
+}
+.footer .ftLinks {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+}
+.footer .ftLinks .linkGroup .ftListItem {
+  list-style: none;
+  transition: 0.3 ease;
+}
+.footer .ftLinks .linkGroup .ftListItem .icon {
+  font-size: 15px;
+}
+.footer .ftLinks .linkGroup .ftListItem:hover {
+  color: var(--primary-color);
+  transform: translateX(7px);
+}
+.footer .ftLinks .linkGroup .ftListItem:hover .icon {
+  color: var(--secondary-color);
+}
+.footer .ftDiv {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem auto;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--grey-color);
+  }
+  .footer .ftContact {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footer .ftContact .contactText {
+    width: 100%;
+    padding: 0 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .footer .ftContact .contactText small {
+    font-size: 14px;
+  }
+  .footer .ftContact .contactText h2 {
+    font-size: 18px;
+  }
+  .footer .ftContact .contactInput {
+    width: 100%;
+    flex-direction: row;
+    gap: 0.3rem;
+  }
+  .footer .ftContact .contactInput input {
+    width: 100%;
+  }
+  .footer .ftContact .contactInput .btn {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+  .footer .ftLinks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}/*# sourceMappingURL=footer.css.map */

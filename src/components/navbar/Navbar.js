@@ -17,7 +17,7 @@ function Navbar() {
         setIsActive(!isActive)
     }
     return (
-        <div className='navBarSection'>
+        <div className='navbar'>
             <div className='navbarWrapper '>
                 <div className="logoDiv">
                     <Link to="/" className='link logo'>

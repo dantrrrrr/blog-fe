@@ -6,10 +6,10 @@ import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Footer from "./components/footer/Footer";
-import TopBar from "./components/topbar/TopBar";
 import styled from 'styled-components'
 import { useContext } from "react";
 import { Context } from "./context/Context";
+import Navbar from "./components/navbar/Navbar";
 
 
 function App() {
@@ -19,9 +19,9 @@ function App() {
   return (
     <>
       <Router>
-        {/* <SideBarLeft /> */}
 
-        <TopBar />
+        {/* <TopBar /> */}
+        <Navbar/>
 
         <Routes>
           <Route path="/" exact element={<Home />} />

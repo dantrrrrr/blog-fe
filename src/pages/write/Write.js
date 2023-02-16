@@ -1,20 +1,23 @@
 import './write.css'
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useReducer, useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useState } from 'react';
 import { Context } from '../../context/Context';
 import { AxiosRequest, BASE_URL } from '../../requests/request';
+import UploadFile from '../../components/upfile/UploadFile';
+import { Web3Storage } from 'web3.storage'
 
 function Write() {
     const editorRef = useRef(null);
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
-    const [file, setFile] = useState();
-    const [fileURL, setFileURL] = useState();
+    const [files, setFiles] = useState();
+    const [fileURL, setFileURL] = useState('');
     const [content, setContent] = useState("");
     const [categories, setCategories] = useState("");
 
-    const { user,headers } = useContext(Context);
+    const { user, headers } = useContext(Context);
+    const [uploading, setUploading] = useState(false);
 
     // const log = () => {
     //     setContent(editorRef.current.getContent())
@@ -22,76 +25,101 @@ function Write() {
     // console.log({ title, file, content })
     // console.log("render")
     // console.log(fileURL)
-    
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGUzRUI2MGIzZDMyRTI2NEIwMWE2MzQ1MDBBMjRhMDA5ZDNGYTUwMGMiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzY1Njg2MjM1MTYsIm5hbWUiOiJibG9nLXVwbG9hZCJ9.BX0zurA_vb5aR6BVjSnJV8FMt7k_sWTBaUAU6-veDO0";
+
 
     const handleSubmit = async (e) => {
         setContent(editorRef.current.getContent())
         e.preventDefault();
-        const newPost = {
-            username: user.username,
-            title: title,
-            content,
 
-        };
-        if (file) {
 
-            const data = new FormData();
-            const filename = Date.now().toString() + file.name;
-            data.append('name', filename);
-            data.append('file', file);
-            newPost.photo = filename;
-            try {
-                await AxiosRequest.post('/api/upload', data);
-
-            } catch (error) {
-                console.log(error.response)
-            }
-        }
         try {
             const res = await AxiosRequest.post('/api/posts', {
                 "title": title,
                 "desc": desc,
                 "content": content,
-                "photo": `${!file ? fileURL : BASE_URL + newPost.photo}`,
+                //  "photo": `${!files ? fileURL : BASE_URL + "newPost.photo"}`,
+                "photo": fileURL,
                 "username": user.username,
                 "categories": categories.split(',')
             },
                 { headers: headers })
             window.location.replace('/post/' + res.data.slug);
         } catch (error) {
-            console.log(error.response.data)
+            console.log(error.response.data.message)
 
         }
 
     }
-    // console.log(file)
+    const [messages, showMessage] = useReducer((msgs, m) => msgs.concat(m), [])
 
+    const handleUpload = async (e) => {
+        e.preventDefault();
+        const client = new Web3Storage({ token })
+        const cid = await client.put(files, {
+            onRootCidReady: () => {
+                showMessage('> 📡 Uploading files to server ! ')
+                setUploading(true)
+                console.log(uploading)
+
+            },
+            // onStoredChunk: bytes => showMessage(`> 🛰 sent ${bytes.toLocaleString()} bytes to web3.storage`)
+        })
+        setFileURL(`https://${cid}.ipfs.dweb.link/${files[0].name}`)
+        showMessage(`> ✅ File has been upload successfully `)
+        setUploading(false)
+        console.log(uploading)
+        // console.log(`https://${cid}.ipfs.dweb.link/${files[0].name}`)
+
+
+    }
+    console.log(fileURL);
+    console.log(files);
+    console.log(uploading)
     return (
         <div className='write'>
+
             <div className="writeImgWrapper">
 
-                {
-                    file && !fileURL &&
-                    <img src={URL.createObjectURL(file) || undefined} alt="" className="writeImg" />
-                }
-                {
-                    fileURL && !file &&
-                    <img src={fileURL} alt="" className="writeImg" />
-                }
-                {
-                    !file && !fileURL &&
-                    <label className='fileInputArea' htmlFor="fileInput">
+
+                {/* if have file check if file upload to server or not */}
+                {files
+                    ? (!uploading
+                        ? (
+                            <>
+                                <img src={URL.createObjectURL(files[0])} alt="img-upload" />
+                                <h1>please upload file to server</h1>
+                            </>
+
+                        )
+                        : (
+                            <img src={fileURL} alt="img-upload" />
+
+                        ))
+                    :
+
+
+                    (<label className='fileInputArea' htmlFor="fileInput">
                         <i className=" writeIcon fa-solid fa-plus"></i>
-                    </label>
+                    </label>)
                 }
+
             </div>
+            {fileURL.length === 0 && <form className='uploadImageForm' onSubmit={handleUpload}>
+                <input type="file" accept="image/png, image/jpg, image/jpeg" id="fileInput" style={{ display: "none" }} onChange={(e) => setFiles(e.target.files)} />
+                <input type="submit" value="submit" />
+                {
+                    messages.map((m, i) => <div key={m + i}>{m}</div>)
+                }
+            </form>}
             <form className="writeForm" onSubmit={handleSubmit}>
 
                 <div className="writeformGroup">
 
-                    <input type="file" id="fileInput" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
-                    <label htmlFor="fileURL" >or paste Image URL here :</label>
-                    <input type="text" id="fileURL" className='fileURL' onChange={e => setFileURL(e.target.value)} />
+                    {/* <input type="file" accept="image/png, image/jpg, image/jpeg" id="fileInput" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} /> */}
+
+                    {/* <label htmlFor="fileURL" >or paste Image URL here :</label>
+                    <input type="text" id="fileURL" className='fileURL' onChange={e => setFileURL(e.target.value)} /> */}
                     <label htmlFor="title">
                         Title :
                     </label>

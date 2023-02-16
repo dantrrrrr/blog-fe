@@ -26,7 +26,7 @@ const SinglePost = ({ postSlug }) => {
     const [isLoading, setIsLoading] = useState(true)
 
     const { headers } = useContext(Context)
-    console.log(headers)
+    // console.log(headers)
 
     useEffect(() => {
         window.scrollTo({ top: 0, bottom: 0, behavior: "smooth" });

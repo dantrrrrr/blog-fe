@@ -4,6 +4,10 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useState } from 'react';
 import { Context } from '../../context/Context';
 import { AxiosRequest, BASE_URL } from '../../requests/request';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2fb95bc1d8d8c1535a6a597651e5c62497bc3970
 import { Web3Storage } from 'web3.storage'
 
 function Write() {

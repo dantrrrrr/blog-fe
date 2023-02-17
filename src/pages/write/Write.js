@@ -4,7 +4,6 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useState } from 'react';
 import { Context } from '../../context/Context';
 import { AxiosRequest, BASE_URL } from '../../requests/request';
-import UploadFile from '../../components/upfile/UploadFile';
 import { Web3Storage } from 'web3.storage'
 
 function Write() {

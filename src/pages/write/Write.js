@@ -3,11 +3,9 @@ import React, { useContext, useEffect, useReducer, useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useState } from 'react';
 import { Context } from '../../context/Context';
-import { AxiosRequest, BASE_URL } from '../../requests/request';
-<<<<<<< HEAD
-=======
+import { AxiosRequest } from '../../requests/request';
 
->>>>>>> 2fb95bc1d8d8c1535a6a597651e5c62497bc3970
+
 import { Web3Storage } from 'web3.storage'
 
 function Write() {
@@ -22,12 +20,7 @@ function Write() {
     const { user, headers } = useContext(Context);
     const [uploading, setUploading] = useState(false);
 
-    // const log = () => {
-    //     setContent(editorRef.current.getContent())
-    // };
-    // console.log({ title, file, content })
-    // console.log("render")
-    // console.log(fileURL)
+
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGUzRUI2MGIzZDMyRTI2NEIwMWE2MzQ1MDBBMjRhMDA5ZDNGYTUwMGMiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzY1Njg2MjM1MTYsIm5hbWUiOiJibG9nLXVwbG9hZCJ9.BX0zurA_vb5aR6BVjSnJV8FMt7k_sWTBaUAU6-veDO0";
 
 
@@ -41,7 +34,6 @@ function Write() {
                 "title": title,
                 "desc": desc,
                 "content": content,
-                //  "photo": `${!files ? fileURL : BASE_URL + "newPost.photo"}`,
                 "photo": fileURL,
                 "username": user.username,
                 "categories": categories.split(',')
@@ -50,7 +42,6 @@ function Write() {
             window.location.replace('/post/' + res.data.slug);
         } catch (error) {
             console.log(error.response.data.message)
-
         }
 
     }
@@ -63,7 +54,7 @@ function Write() {
             onRootCidReady: () => {
                 showMessage('> 📡 Uploading files to server ! ')
                 setUploading(true)
-                console.log(uploading)
+                // console.log(uploading)
 
             },
             // onStoredChunk: bytes => showMessage(`> 🛰 sent ${bytes.toLocaleString()} bytes to web3.storage`)
@@ -71,20 +62,17 @@ function Write() {
         setFileURL(`https://${cid}.ipfs.dweb.link/${files[0].name}`)
         showMessage(`> ✅ File has been upload successfully `)
         setUploading(false)
-        console.log(uploading)
+        // console.log(uploading)
         // console.log(`https://${cid}.ipfs.dweb.link/${files[0].name}`)
 
 
     }
-    console.log(fileURL);
-    console.log(files);
-    console.log(uploading)
+    // console.log(fileURL);
+    // console.log(files);
+    // console.log(uploading)
     return (
         <div className='write'>
-
             <div className="writeImgWrapper">
-
-
                 {/* if have file check if file upload to server or not */}
                 {files
                     ? (!uploading
@@ -93,20 +81,15 @@ function Write() {
                                 <img src={URL.createObjectURL(files[0])} alt="img-upload" />
                                 <h1>please upload file to server</h1>
                             </>
-
                         )
                         : (
                             <img src={fileURL} alt="img-upload" />
-
                         ))
                     :
-
-
                     (<label className='fileInputArea' htmlFor="fileInput">
                         <i className=" writeIcon fa-solid fa-plus"></i>
                     </label>)
                 }
-
             </div>
             {fileURL.length === 0 && <form className='uploadImageForm' onSubmit={handleUpload}>
                 <input type="file" accept="image/png, image/jpg, image/jpeg" id="fileInput" style={{ display: "none" }} onChange={(e) => setFiles(e.target.files)} />
@@ -116,13 +99,8 @@ function Write() {
                 }
             </form>}
             <form className="writeForm" onSubmit={handleSubmit}>
-
                 <div className="writeformGroup">
 
-                    {/* <input type="file" accept="image/png, image/jpg, image/jpeg" id="fileInput" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} /> */}
-
-                    {/* <label htmlFor="fileURL" >or paste Image URL here :</label>
-                    <input type="text" id="fileURL" className='fileURL' onChange={e => setFileURL(e.target.value)} /> */}
                     <label htmlFor="title">
                         Title :
                     </label>
@@ -162,11 +140,9 @@ function Write() {
                         onChange={() => setContent(editorRef.current.getContent())}
                     />
                 </div>
-                {/* <input type="submit" value="Submit" /> */}
                 <button className='writeSubmit' type='submit' > Publish </button>
             </form>
 
-            {/* <button onClick={log}>Log editor content</button> */}
         </div>
     )
 }

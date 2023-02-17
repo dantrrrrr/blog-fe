@@ -11,9 +11,9 @@ const Settings = () => {
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
     const [password, setPassword] = useState("**********");
-    console.log(username,email,password);
+    // console.log(username,email,password);
 
-    console.log(user)
+    // console.log(user)
     const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedUser = {

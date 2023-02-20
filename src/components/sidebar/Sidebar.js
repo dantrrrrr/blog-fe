@@ -16,24 +16,24 @@ const Sidebar = () => {
             <div className="sidebarItem">
                 {/* <span className="sidebarTitle">Follow us</span> */}
                 <div className="sidebarSocial">
-                    <Link className="link" to='https://facebook.com/dantrrrrr'>
+                    <a className="link" target="_blank" rel="noopener noreferrer" href='https://facebook.com/dantrrrrr'>
                         <FiFacebook className="sidebarIcon" />
 
-                    </Link>
-                    <Link className="link" to='https://instagram.com/dantrrrrr'>
+                    </a>
+                    <a className="link" target="_blank" rel="noopener noreferrer" href='https://instagram.com/dantrrrrr'>
 
                         <FiInstagram className="sidebarIcon" />
-                    </Link>
+                    </a>
 
-                    <Link className="link" to='https://twitter.com/dantrrrrr'>
+                    <a className="link" target="_blank" rel="noopener noreferrer" href='https://twitter.com/dantrrrrr'>
 
                         <FiTwitter className="sidebarIcon" />
-                    </Link>
+                    </a>
 
-                    <Link className="link" to='https://linkedinbook.com/dantrrrrr'>
+                    <a className="link" target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/dantrrrrr/'>
 
                         <FiLinkedin className="sidebarIcon" />
-                    </Link>
+                    </a>
 
 
                 </div>
@@ -42,10 +42,10 @@ const Sidebar = () => {
 
             <div className="sidebarItem">
                 <span className="sidebarTitle">Categories</span>
-                <ul className="sidebarList">
+                <ul className="sidebarList" >
                     {
                         categories.map((cat) => (
-                            <li key={cat._id} className="sidebarListItem" data-aos='fade-left'><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
+                            <li key={cat._id} className="sidebarListItem" ><Link className='link' to={`/${cat.name}`}>{cat.name}</Link></li>
 
                         ))
                     }

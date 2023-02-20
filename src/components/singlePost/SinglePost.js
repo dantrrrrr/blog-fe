@@ -12,46 +12,37 @@ import Loading from 'react-loading'
 import { AxiosRequest } from '../../requests/request';
 import { memo } from 'react';
 import { FiChevronRight } from 'react-icons/fi'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPost, getPostById, getPostBySlug, getPostsError, getPostsStatus, selectAllPosts } from '../../features/posts/postsSlice';
 
 
 
 const SinglePost = ({ postSlug }) => {
-    const [post, setPost] = useState({});
-    const [title, setTitle] = useState("")
-    // const [desc, setDesc] = useState("")
-    const [content, setContent] = useState("")
+
     const [updateMode, setUpdateMode] = useState(false);
     const editorRef = useRef(null);
+    const status = useSelector(getPostsStatus);
+    const post = useSelector(state => getPostBySlug(state, postSlug));
+    console.log(status)
 
-    const [isLoading, setIsLoading] = useState(true)
 
-    const { headers } = useContext(Context)
-    // console.log(headers)
+    const [data, setData] = useState({
+        title: '',
+        content: ''
+    });
+    const { user, headers } = useContext(Context)
+
+    const errorPost = useSelector(getPostsError)
 
     useEffect(() => {
+        // dispatch(fetchPost())
+        post && setData(prev => ({ ...prev, title: post.title, content: post.content }))
+
         window.scrollTo({ top: 0, bottom: 0, behavior: "smooth" });
-    }, [isLoading])
-    useEffect(() => {
-        const fetchPost = async () => {
 
-            try {
-                const res = await AxiosRequest.get(`/api/posts/${postSlug}`)
-                setPost(res.data)
-                //
-                setTitle(res.data.title)
-                setContent(res.data.content)
+    }, [post])
 
-            } catch (error) {
-                console.log(error)
-            } finally {
-                setIsLoading(false)
-            }
-        }
-        fetchPost()
 
-    }, [postSlug])
-    const { user } = useContext(Context)
-    // console.log(user)
     const handleDelete = async () => {
         try {
             await AxiosRequest.delete(`/api/posts/${post._id}`, {
@@ -64,31 +55,31 @@ const SinglePost = ({ postSlug }) => {
         } catch (error) {
             console.log(error)
         } finally {
-            setIsLoading(false)
+            // setIsLoading(false)
         }
     }
     const handleUpdate = async () => {
-        setIsLoading(true)
+        // setIsLoading(true)
 
         try {
             await AxiosRequest.put(`/api/posts/${post._id}`, {
                 username: user.username,
-                title,
-                content
-            })
-            // window.location.reload()
+                // slug: data.title.split(' ').join('-'),
+                ...data
+            }, { headers: headers })
+            //  window.location.replace(`/${}`)
 
         } catch (error) {
             console.log(error)
         } finally {
-            setIsLoading(false);
+            // setIsLoading(false);
             setUpdateMode(false);
         }
     }
     return (
         <div className='singlePost'>
             {
-                isLoading ? (<Loading className='loading' type='spin' color='white' height={50} width={50} />)
+                status === 'loading' || status === 'idle' ? (<Loading className='loading' type='spin' color='white' height={50} width={50} />)
 
                     : (
                         <div className="singlePostWrapper">
@@ -99,13 +90,12 @@ const SinglePost = ({ postSlug }) => {
                             </div>
                             {post.photo && <img src={post.photo} alt="" className="singlePostImg" />}
                             {
-                                updateMode ? (<input type="text" className='singlePostTitleInput' value={title} onChange={(e) => setTitle(e.target.value)} />)
+                                updateMode ? (<input type="text" className='singlePostTitleInput' value={data.title} onChange={(e) => setData(prev => ({ ...prev, title: e.target.value }))} />)
                                     : (
-                                        <h1 className="singlePostTitle">{title}
+                                        <h1 className="singlePostTitle">{data.title}
                                             {user?.username === post.username || user?.isAdmin ? (
                                                 <div className="singlePostEdit" >
                                                     <i className="singlePostIcon fa-solid fa-pen-to-square" onClick={() => {
-
                                                         setUpdateMode(true)
                                                     }}></i>
                                                     <i className="singlePostIcon fa-solid fa-trash" onClick={handleDelete}></i>
@@ -128,7 +118,7 @@ const SinglePost = ({ postSlug }) => {
                                     className="singlePostContentInput"
                                     id='content'
                                     onInit={(evt, editor) => editorRef.current = editor}
-                                    initialValue={content}
+                                    initialValue={data.content} //init value
                                     init={{
                                         height: 500,
                                         menubar: false,
@@ -144,12 +134,12 @@ const SinglePost = ({ postSlug }) => {
                                         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
                                     }}
                                     ref={editorRef}
-                                    onChange={() => setContent(editorRef.current.getContent())}
+                                    onChange={() => setData(prev => ({ ...prev, content: editorRef.current.getContent() }))}
                                 />)
                                 : (
 
                                     <div className='singlePostContent'>
-                                        {parse(`${content}`)}
+                                        {parse(`${data.content}`)}
                                     </div>
                                 )}
                             {updateMode &&
@@ -157,9 +147,11 @@ const SinglePost = ({ postSlug }) => {
                             }
 
                         </div>
-                    )}
+                    )
+            }
 
-        </div>
+
+        </div >
     )
 }
 export default memo(SinglePost)

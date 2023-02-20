@@ -6,7 +6,7 @@ export default function Post({ post }) {
       <div className="imgDiv">
         <Link to={`/post/${post.slug}`}>
 
-          <img className='postImg' alt="this is a post img" src={post.photo} />
+          <img className='postImg' alt={` About ${post.tile}`} src={post.photo} />
         </Link>
       </div>
       <div className="postInfo">
@@ -20,7 +20,10 @@ export default function Post({ post }) {
           {/* <span className="postCat"><Link className='link' to='?cat=sport'>Sport</Link></span>
           <span className="postCat"><Link className='link' to='?cat=bitch'>Bitch</Link></span> */}
         </div>
-        <span className="postTitle">{post.title}</span>
+        <Link className='link' to={`/post/${post.slug}`}>
+
+          <span className="postTitle">{`${post.title}`}</span>
+        </Link>
         <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
 
 

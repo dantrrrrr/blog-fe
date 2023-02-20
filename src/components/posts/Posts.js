@@ -2,29 +2,25 @@ import './posts.css';
 import Post from '../post/Post';
 import { Link, useParams } from 'react-router-dom';
 import Loading from 'react-loading';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../../context/Context';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getPostByCat, getPostsStatus, selectAllPosts } from '../../features/posts/postsSlice';
 export default function Posts() {
-    const {posts}=useContext(Context);
+
     const { cat } = useParams();
-    const {
-       
-        isLoading,
-        setCatSlug,
-         } = useContext(Context)
-
-
+    const posts = useSelector(state => getPostByCat(state, cat))
+    const status = useSelector(getPostsStatus);
     useEffect(() => {
-        setCatSlug(cat)
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, [posts]);
 
-    }, [cat]);
-  
 
     return (
         <div className="posts">
             {
-                isLoading ? (<Loading className='loading' type='spin' color='white' height={100} width={100} />)
+                status ==='loading' ? (<Loading className='loading' type='spin' color='white' height={100} width={100} />)
                     : (
 
                         posts.length === 0 ? (
@@ -43,7 +39,7 @@ export default function Posts() {
                                                 <Post key={post._id} post={post} />
                                             ))
                                         )
-                                        
+
                                     }
 
                                 </div>

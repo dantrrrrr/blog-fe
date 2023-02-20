@@ -12,14 +12,14 @@ function Footer() {
                 </div>
                 <div className="contactInput">
                     <input type="text" className='' />
-                    <button className="btn"  data-aos='fade-left'>
+                    <button className="btn" >
                         SEND
                         <FiSend className="icon" />
                     </button>
                 </div>
             </div>
             <div className="ftLinks">
-                <div className="linkGroup" data-aos='fade-right'>
+                <div className="linkGroup" >
                     <li className="ftListItem">
                         <FiChevronRight />Facebook
                     </li>
@@ -36,7 +36,7 @@ function Footer() {
                         <FiChevronRight />LinkedIn
                     </li>
                 </div>
-                <div className="linkGroup" data-aos='fade-right'>
+                <div className="linkGroup" >
                     <li className="ftListItem">
                         <FiChevronRight />About
                     </li>
@@ -53,7 +53,7 @@ function Footer() {
                         <FiChevronRight />Ethereum
                     </li>
                 </div>
-                <div className="linkGroup" data-aos='fade-right'>
+                <div className="linkGroup" >
                     <li className="ftListItem">
                         <FiChevronRight />Code
                     </li>

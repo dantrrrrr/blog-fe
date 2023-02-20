@@ -15,31 +15,30 @@ export const ContextProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('user', JSON.stringify(state.user))
     }, [state.user])
-   
-    const [catSlug, setCatSlug] = useState('');
-  
-    const [posts, setPosts] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const res = await AxiosRequest.get(`/api/posts?${catSlug ? "cat=" + catSlug : " "}`);
-             
-                setPosts(res.data);
-             
-            } catch (error) {
 
-            } finally {
-                setIsLoading(false);
-            }
-        }
-        console.log('run')
-        fetchPosts();
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
-    },[catSlug])
-    
-   
+    // const [posts, setPosts] = useState([]);
+    // const [isLoading, setIsLoading] = useState(true);
+    // useEffect(() => {
+    //     const fetchPosts = async () => {
+    //         try {
+    //             const res = await AxiosRequest.get(`/api/posts?${catSlug ? "cat=" + catSlug : " "}`);
+
+    //             setPosts(res.data);
+
+    //         } catch (error) {
+
+    //         } finally {
+    //             setIsLoading(false);
+    //         }
+    //     }
+    //     console.log('run')
+    //     fetchPosts();
+    //     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+    // },[catSlug])
+
+
 
     ////side bar
     const [categories, setCategories] = useState([]);
@@ -60,18 +59,18 @@ export const ContextProvider = ({ children }) => {
     useEffect(() => {
 
         const data = JSON.parse(localStorage.getItem('user'))
-        var accessToken ;
-        if(data!==null){
-            accessToken=data.accessToken;   
+        var accessToken;
+        if (data !== null) {
+            accessToken = data.accessToken;
         }
-        setHeaders(prev=>({
+        setHeaders(prev => ({
             ...prev,
             'Content-Type': 'application/json',
             'Authorization': accessToken
         }))
 
     }, [state.user]);
-   
+
 
 
     return (
@@ -81,17 +80,9 @@ export const ContextProvider = ({ children }) => {
                 isFetching: state.isFetching,
                 error: state.error,
                 dispatch,
-                posts,
-                setPosts,
-                isLoading,
-                setIsLoading,
                 categories,
                 randomPost,
-                catSlug,
-                setCatSlug,
                 headers
-               
-
             }
         }
         >

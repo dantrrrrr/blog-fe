@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import { Context } from '../../context/Context';
 import { Editor } from '@tinymce/tinymce-react';
 // import { useRef } from 'react';
+import { FiTrash2, FiEdit } from "react-icons/fi"
 import Loading from 'react-loading'
 import { AxiosRequest } from '../../requests/request';
 import { memo } from 'react';
@@ -23,14 +24,14 @@ const SinglePost = ({ postSlug }) => {
     const editorRef = useRef(null);
     const status = useSelector(getPostsStatus);
     const post = useSelector(state => getPostBySlug(state, postSlug));
-    console.log(status)
-
-
+    // console.log(status)
+    const [openDelete, setOpenDelete] = useState(false);
     const [data, setData] = useState({
         title: '',
         content: ''
     });
     const { user, headers } = useContext(Context)
+    // console.log(!!user)
 
     const errorPost = useSelector(getPostsError)
 
@@ -78,11 +79,22 @@ const SinglePost = ({ postSlug }) => {
     }
     return (
         <div className='singlePost'>
+            {openDelete && <div className="deletePostOption">
+                <div className="deleteCard">
+                    <h2>Confirm delete ?</h2>
+                    <div className="optionsButton">
+                        <button className='deleteBtn' onClick={handleDelete}>Delete</button>
+                        <button className='cancelBtn' onClick={() => setOpenDelete(!openDelete)}>Cancel</button>
+                    </div>
+                </div>
+            </div>
+            }
             {
                 status === 'loading' || status === 'idle' ? (<Loading className='loading' type='spin' color='white' height={50} width={50} />)
 
                     : (
                         <div className="singlePostWrapper">
+
                             <div className="pathSinglePost">
                                 <Link className="link" to='/'>Home</Link>
                                 <FiChevronRight />
@@ -95,10 +107,12 @@ const SinglePost = ({ postSlug }) => {
                                         <h1 className="singlePostTitle">{data.title}
                                             {user?.username === post.username || user?.isAdmin ? (
                                                 <div className="singlePostEdit" >
-                                                    <i className="singlePostIcon fa-solid fa-pen-to-square" onClick={() => {
+
+                                                    <FiEdit className='singlePostIcon edit' onClick={() => {
                                                         setUpdateMode(true)
-                                                    }}></i>
-                                                    <i className="singlePostIcon fa-solid fa-trash" onClick={handleDelete}></i>
+                                                    }} />
+                                                    <FiTrash2 className='singlePostIcon trash' onClick={() => setOpenDelete(!openDelete)} />
+
                                                 </div>
                                             ) : (
                                                 <></>

@@ -25,18 +25,18 @@ const Login = () => {
 
                 }, { withCredentisals: true }
             );
-            console.log(res.data)
+            // console.log(res.data)
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         } catch (error) {
             dispatch({ type: "LOGIN_FAILURE" });
             setFetchError(error.response.data);
-            console.log(fetchError)
+            // console.log(fetchError)
         }
     }
     // console.log("error",errors);
 
 
-    user && console.log(user)
+    // user && console.log(user) 
     return (
         <div className='login'>
             <video src="https://bafybeifxpkakkipzck7t2m575gbhhjpdbqgjaqh6hgubftd73r4pdfpiqm.ipfs.w3s.link/world-2.mp4" autoPlay muted loop></video>

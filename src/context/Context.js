@@ -3,7 +3,8 @@ import { AxiosRequest } from "../requests/request";
 import Reducer from "./Reducer";
 
 const INITIAL_STATE = {
-    user: JSON.parse(localStorage.getItem("user")) || null,
+    // user: JSON.parse(localStorage.getItem("user")) || null,
+    user: JSON.parse(sessionStorage.getItem("user")) || null,
     isFetching: false,
     error: false
 };
@@ -13,7 +14,11 @@ export const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
     //set user to local storage
     useEffect(() => {
-        localStorage.setItem('user', JSON.stringify(state.user))
+        // localStorage.setItem('user', JSON.stringify(state.user))
+
+        sessionStorage.setItem('user', JSON.stringify(state.user))
+        sessionStorage.setItem('token', (state.user?.accessToken))
+        // .setItem('user', JSON.stringify(state.user))
     }, [state.user])
 
 
@@ -58,11 +63,14 @@ export const ContextProvider = ({ children }) => {
     const [headers, setHeaders] = useState({})
     useEffect(() => {
 
-        const data = JSON.parse(localStorage.getItem('user'))
-        var accessToken;
-        if (data !== null) {
-            accessToken = data.accessToken;
-        }
+        // const data = JSON.parse(localStorage.getItem('user'))
+        // const data = JSON.parse(sessionStorage.getItem('user'))
+        // var accessToken;
+        // if (data !== null) {
+        //     accessToken = data.accessToken;
+        // }
+        let accessToken;
+        accessToken = sessionStorage.getItem('token');
         setHeaders(prev => ({
             ...prev,
             'Content-Type': 'application/json',

@@ -4,7 +4,7 @@ import './navbar.css'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { SiBitcoin } from 'react-icons/si'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Context } from '../../context/Context'
 function Navbar() {
     const { user, dispatch } = useContext(Context);
@@ -15,6 +15,16 @@ function Navbar() {
     const [isActive, setIsActive] = useState(false);
     const showNavbar = () => {
         setIsActive(!isActive)
+    }
+    const ActiveLink = (props) => {
+        return <NavLink
+            style={({ isActive }) => {
+                return {
+                    color: isActive ? 'var(--primary-color' : ''
+                };
+            }}
+            {...props}
+        />
     }
     return (
         <div className='navbar'>
@@ -29,25 +39,25 @@ function Navbar() {
                     {/* <div className={`navBar  activeNavbar`}> */}
                     <ul className="navLists">
                         <li className="navItem">
-                            <Link to="/" className="link navLink">Home</Link>
+                            <ActiveLink to={"/"} className="link navLink">Home</ActiveLink>
                         </li>
                         <li className="navItem">
-                            <Link to="/news" className="link navLink">News</Link>
+                            <ActiveLink to={"/category/news"} className="link navLink">News</ActiveLink>
                         </li>
                         <li className="navItem">
-                            <Link to="/crypto" className="link navLink">Crypto</Link>
+                            <ActiveLink to={"/category/crypto"} className="link navLink">Crypto</ActiveLink>
                         </li>
 
                         <li className="navItem">
-                            <Link to="/contact" className="link navLink">Contact</Link>
+                            <ActiveLink to={"/contact"} className="link navLink">Contact</ActiveLink>
                         </li>
 
                         {user ? (<>
                             <li className="navItem">
-                                <Link to="/write" className="link navLink">Write</Link>
+                                <Link to={"/write"} className="link navLink">Write</Link>
                             </li>
                             <li className="navItem">
-                                <Link to="/settings" className="link navLink">Settings</Link>
+                                <Link to={"/settings"} className="link navLink">Settings</Link>
                             </li>
                             <li className="navItem" onClick={handleLogout}>
                                 <Link to="#" className="link navLink">Log out</Link>
@@ -55,7 +65,7 @@ function Navbar() {
                         </>)
                             : (
                                 <li className="navItem">
-                                    <Link to="/login" className="link navLink loginBtn">Log In</Link>
+                                    <Link to={"/login"} className="link navLink loginBtn">Log In</Link>
                                 </li>
                             )}
 
@@ -74,5 +84,4 @@ function Navbar() {
         </div>
     )
 }
-
 export default Navbar

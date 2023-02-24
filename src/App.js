@@ -43,13 +43,13 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/:cat" element={<Home />} />
-          <Route path="/register" element={user ? <Navigate to='/' /> : <Register />} />
-          <Route path="/login" element={user ? <Navigate to='/' /> : <Login />} />
-          <Route path="/write" element={user ? <Write /> : <Navigate to='/login' />} />
-          <Route path="/settings" element={user ? <Settings /> : <Navigate to='/register' />} />
+          <Route path="/category/:cat" element={<Home />} />
+          <Route path="/register" element={!!user ? <Navigate to='/' /> : <Register />} />
+          <Route path="/login" element={!!user ? <Navigate to='/' /> : <Login />} />
+          <Route path="/write" element={!!user ? <Write /> : <Navigate to='/login' />} />
+          <Route path="/settings" element={!!user ? <Settings /> : <Navigate to='/register' />} />
           <Route path="/post/:postSlug" element={<Single />} />
-          <Route path="*" element={<Navigate to='/' />} />
+          <Route path="/*" element={<Navigate to='/' />} />
         </Routes>
         <Footer />
       </Router>

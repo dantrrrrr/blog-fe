@@ -61,4 +61,10 @@
   color: black;
   background-color: transparent;
   border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .login video {
+    display: none;
+  }
 }/*# sourceMappingURL=login.css.map */

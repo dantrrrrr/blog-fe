@@ -47,7 +47,7 @@ function App() {
           <Route path="/register" element={!!user ? <Navigate to='/' /> : <Register />} />
           <Route path="/login" element={!!user ? <Navigate to='/' /> : <Login />} />
           <Route path="/write" element={!!user ? <Write /> : <Navigate to='/login' />} />
-          <Route path="/settings" element={!!user ? <Settings /> : <Navigate to='/register' />} />
+          <Route path="/settings" element={!!user ? <Settings /> : <Navigate to='/login' />} />
           <Route path="/post/:postSlug" element={<Single />} />
           <Route path="/*" element={<Navigate to='/' />} />
         </Routes>

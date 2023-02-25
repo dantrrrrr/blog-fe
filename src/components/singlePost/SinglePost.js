@@ -13,8 +13,8 @@ import Loading from 'react-loading'
 import { AxiosRequest } from '../../requests/request';
 import { memo } from 'react';
 import { FiChevronRight } from 'react-icons/fi'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPost, getPostById, getPostBySlug, getPostsError, getPostsStatus, selectAllPosts } from '../../features/posts/postsSlice';
+import { useSelector } from 'react-redux';
+import { getPostBySlug, getPostsError, getPostsStatus, } from '../../features/posts/postsSlice';
 
 
 
@@ -42,7 +42,9 @@ const SinglePost = ({ postSlug }) => {
         window.scrollTo({ top: 0, bottom: 0, behavior: "smooth" });
 
     }, [post])
-
+    useEffect(() => {
+        document.title = data.title;
+    }, [])
 
     const handleDelete = async () => {
         try {
